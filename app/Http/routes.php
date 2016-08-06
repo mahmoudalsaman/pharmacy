@@ -29,6 +29,9 @@ Route::get('branch', function () {
     return view('branch');
 });
 
+Route::get('brand', function () {
+    return view('brand');
+});
 
 Route::get('category', function () {
     return view('category');
