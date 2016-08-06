@@ -16,6 +16,8 @@ class CreateProductsTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('product_id');
+            $table->integer('brand_id_fk')
+                ->unsigned();
             $table->string('name')
                 ->unique();
             $table->text('description')
@@ -25,6 +27,10 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 12, 2);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('brand_id_fk')
+                ->references('brand_id')
+                ->on('brands');
         }); 
     }
 
