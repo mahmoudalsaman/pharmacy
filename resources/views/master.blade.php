@@ -130,10 +130,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="employee"><i class="fa fa-circle-o"></i>Employee</a></li>
-            <li><a href="customer"><i class="fa fa-circle-o"></i>Customer</a></li>
-            <li><a href="branch"><i class="fa fa-circle-o"></i>Branch</a></li>
+            <li class="active"><a href="branch"><i class="fa fa-circle-o"></i>Branch</a></li>
+            <li><a href="employee"><i class="fa fa-circle-o"></i>Employee</a></li>
+            <li><a href="customer"><i class="fa fa-circle-o"></i>Customer</a></li>            
             <li><a href="category"><i class="fa fa-circle-o"></i>Category</a></li>
+            <li><a href="brand"><i class="fa fa-circle-o"></i>Brand</a></li>
             <li><a href="product"><i class="fa fa-circle-o"></i>Products</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i>Product Stocks</a></li>
           </ul>
