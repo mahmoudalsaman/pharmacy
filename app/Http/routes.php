@@ -12,5 +12,32 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('master');
+});
+
+Route::get('employee', function () {
+    return view('employee');
+});
+
+
+Route::get('customer', function () {
+    return view('customer');
+});
+
+
+Route::get('branch', function () {
+    return view('branch');
+});
+
+
+Route::get('category', function () {
+    return view('category');
+});
+
+Route::get('product', function () {
+    return view('product');
+});
+
+Route::get('products-stocks', function () {
+    return view('products-stocks');
 });
