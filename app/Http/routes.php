@@ -48,3 +48,7 @@ Route::get('inventory', function () {
 Route::get('transaction', function () {
     return view('transaction');
 });
+
+Route::get('login', function () {
+    return view('login');
+});
