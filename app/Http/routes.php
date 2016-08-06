@@ -44,3 +44,15 @@ Route::get('product', function () {
 Route::get('products-stocks', function () {
     return view('products-stocks');
 });
+
+
+Route::group(['prefix' => 'pharmacy/api'], function() {
+	// Api version 1
+	Route::group(['prefix' => 'v1'], function() {
+		Route::resource('branches', 'Api\\BranchApi');
+		Route::resource('users', 'Api\\UserApi');
+		Route::resource('tags', 'Api\\TagApi');
+		Route::resource('brands', 'Api\\BrandApi');
+		Route::resource('products', 'Api\\ProductApi');
+	});
+});
