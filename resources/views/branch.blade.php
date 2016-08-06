@@ -42,7 +42,7 @@
 				</center>
 				<br>
 			</form>
-</div>
+	</div>
 </div>
 
 
@@ -83,7 +83,7 @@
 					    </div>   
 
 					    <div class="form-group">
-				          <label for="exampleInputFile">Choose Image"></label>
+				          <label for="exampleInputFile">Choose Image</label>
 				          <input type="file" id="exampleInputFile">        
 				        </div>		    
 					</div>	

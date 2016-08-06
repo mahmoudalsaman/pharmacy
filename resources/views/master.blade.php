@@ -116,7 +116,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> WALA PA</a></li>
+            <li class="active"><a href="transaction"><i class="fa fa-circle-o"></i>Transactions</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> WALA PA</a></li>
           </ul>
         </li>      
@@ -156,8 +156,6 @@
     <strong><a href="http://almsaeedstudio.com">Pharmacy</a>.</strong> All rights
     reserved.
   </footer>
-
-  
 </div>
 <!-- ./wrapper -->
 
