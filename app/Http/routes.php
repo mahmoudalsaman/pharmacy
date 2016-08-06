@@ -41,10 +41,17 @@ Route::get('product', function () {
     return view('product');
 });
 
-Route::get('products-stocks', function () {
-    return view('products-stocks');
+Route::get('inventory', function () {
+    return view('inventory');
 });
 
+Route::get('transaction', function () {
+    return view('transaction');
+});
+
+Route::get('login', function () {
+    return view('login');
+});
 
 Route::group(['prefix' => 'pharmacy/api'], function() {
 	// Api version 1
