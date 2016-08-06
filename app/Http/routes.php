@@ -41,6 +41,6 @@ Route::get('product', function () {
     return view('product');
 });
 
-Route::get('products-stocks', function () {
-    return view('products-stocks');
+Route::get('inventory', function () {
+    return view('inventory');
 });

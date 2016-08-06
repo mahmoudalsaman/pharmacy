@@ -136,7 +136,7 @@
             <li><a href="category"><i class="fa fa-circle-o"></i>Category</a></li>
             <li><a href="brand"><i class="fa fa-circle-o"></i>Brand</a></li>
             <li><a href="product"><i class="fa fa-circle-o"></i>Products</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Product Stocks</a></li>
+            <li><a href="inventory"><i class="fa fa-circle-o"></i>Product Stocks</a></li>
           </ul>
         </li>
 
@@ -152,7 +152,7 @@
     @yield('content')
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">   
+  <footer class="main-footer col-md-12">   
     <strong><a href="http://almsaeedstudio.com">Pharmacy</a>.</strong> All rights
     reserved.
   </footer>
