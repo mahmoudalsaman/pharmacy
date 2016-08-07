@@ -187,7 +187,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer col-md-12">   
-    <strong><a href="http://almsaeedstudio.com">Pharmacy</a>.</strong> All rights
+    <strong><a href="#">Pharmacy</a>.</strong> All rights
     reserved.
   </footer>
 </div>
@@ -200,6 +200,7 @@
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.6 -->
+
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -231,6 +232,8 @@
 
 <!-- asssssssssssssssssssss -->
 <script src="../../plugins/select2/select2.full.min.js"></script>
+<script src="bootstrap/js/validator.js"></script>
+<script src="bootstrap/js/jquery.validate.min.js"></script>
 </body>
 
 

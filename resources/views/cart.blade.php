@@ -1,5 +1,55 @@
 @extends('master')
 @section('content')
+<div class="col-md-12">
+	<h1><center>Cart</center></h1>
+	<hr>
+	<div class="col-md-12">
+		<div class="form-group col-md-3">
+	        <label>Delivery Type</label>
+	        <select class="form-control" style="width: 100%;" id="delivery_type">
+	          <option value="pick-up" selected="selected">Pick-up</option>
+	          <option value="delivery">Delivery</option>			                 
+	        </select>
+	  	</div>
+
+
+	  	<div class="col-md-3">
+			<div class="form-group">
+		      <label>Total amount Due</label>
+		      <input type="text" class="form-control" id="" placeholder="0.00" disabled="">
+		    </div>
+		</div>
+
+
+		<div class="col-md-3">
+			<label></label>
+			<div class="form-group">
+			<button type="button" class="btn btn-danger">Proceed to Check Out</button>
+		</div>
+		</div>
+
+	</div>
+
+	<div class="col-md-12" id="hide_show" hidden="">
+  		<div class="form-group col-md-3">
+	      <label>Delivery Address</label>
+	      <input type="text" class="form-control" id="delivery_address" placeholder="Delivery Address">
+		</div>	
+	</div>	
+
+
+	<div class="col-md-12" id="hide_show1" hidden="">
+  		<div class="form-group col-md-3">
+	      <label>Delivery Charge</label>
+	      <input type="text" class="form-control" id="delivery_charge" placeholder="Delivery Charge" disabled="">
+		</div>	
+	</div>
+
+</div>
+	
+<div class="col-md-12">
+
+
 <div class="panel panel-primary box-body" style="margin-top:5%">
   <div class="panel-body">
   		<center>
@@ -9,30 +59,6 @@
 			<form class="form-horizontal" role="form" >
 				<div class="form-group">		
 					<div class="table-responsive">
-
-					<div class="col-md-12">
-						<div class="form-group col-md-3">
-			                <label>Delivery Type</label>
-			                <select class="form-control select2" style="width: 100%;">
-			                  <option selected="selected">Pick-up</option>
-			                  <option>Delivery</option>			                 
-			                </select>
-		              	</div>
-	              	</div>
-	              	<div class="col-md-12">
-		              	<div class="form-group col-md-3">
-					      <label>Delivery Address</label>
-					      <input type="text" class="form-control" id="" placeholder="Delivery Address">
-				    	</div>	
-			    	</div>	
-
-			    	<div class="col-md-12">
-		              	<div class="form-group col-md-3">
-					      <label>Contact Person</label>
-					      <input type="text" class="form-control" id="" placeholder="Contact Person">
-				    	</div>	
-			    	</div>	
-
 						<table class="table table-bordered table-hover" id="">
 							<thead>
 								<tr>
@@ -56,17 +82,9 @@
 							</tbody>
 						</table>
 					</div>	
-					<div class="col-md-offset-9">
-						<div class="form-group col-md-12">
-					      <label>Total amount Due</label>
-					      <input type="text" class="form-control" id="" placeholder="0.00" disabled="">
-					    </div>
-				    </div>
-
 				</div>
 				
-				<center>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#ordered_modal">Proceed to checkout</button>
+				<center>					
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
 					data-toggle="modal" data-target="#ordered_modal">Edit Order</button>
 				</center>
@@ -75,43 +93,56 @@
 	</div>
 </div>	
 
+
+
+</div>
+
+
+<div class="col-md-12">
+	<br><br><br><br>
+	<form>
+		<center></center>
+	</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <!-- MODAL -->
-<div class="modal modal-default" id="ordered_modal" role="dialog" style="margin-top:10%">
-    <div class="col-sm-7 col-sm-offset-3">
+<div class="modal modal-default" id="cart" role="dialog" style="margin-top:10%">
+    <div class="col-sm-5 col-sm-offset-4">
         <div class="modal-content">
             <div class="modal-header">
                 <center>
-                     <h3><i class="ace-icon fa fa-users"></i></h3>
+                     <h3><i class="ace-icon fa fa-plus"></i> Enter Quantity</h3>
                 </center>
             </div>           
             <div class="modal-body">
             <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "" id="">
-        		<div class="box-body">        
-
-				  	<div class="col-md-5">						  		
-			            <div class="form-group">
-			                <label>Branch</label>
-			                <select class="form-control select2" style="width: 100%;">
-			                  <option selected="selected">Heaven</option>
-			                  <option>Hell</option>
-			                </select>
-			            </div>				  		
-
+        		<div class="box-body">        		
+				  	<div class="col-md-10">
 					    <div class="form-group">
-					      <label>Employee Name</label>
-					      <input type="text" class="form-control" id="added_by" placeholder="Employee Name" disabled="">
-					    </div>	
+					    	<label>Quantity:</label>
+			               	<input type="number" class="form-control" name="" placeholder="Quantity">
+		              	</div>
 
-					    <div class="form-group">
-					      <label>Product Name</label>
-					      <input type="text" class="form-control" id="inv_product" placeholder="Product Name" disabled="">
-					    </div>
+		              	<div class="form-group">
+					      <label>Total Amount*</label>
+					      <input type="text" disabled="" class="form-control" id="" placeholder="Total Amount">
+					    </div>			
 					</div>
-					
+
 					<div class="col-sm-12 modal-footer">
 						<center>
-							<button type="button" class="btn btn-primary column-md-4 span4 text-right">Done</button>
-							<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary column-md-4 span4 text-right">Submit</button>
+							<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
 						</center>
 					</div>
 				</div>
@@ -121,5 +152,29 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+	
+
+	var cmb = document.getElementById("delivery_type");
+		cmb.onchange=newType;
+		function newType()
+		{   
+		    var cmb = document.getElementById("delivery_type");
+		    var selectedValue = cmb.options[cmb.selectedIndex].value;
+		 
+		    
+		    if (selectedValue == "delivery")
+		    {   document.getElementById("hide_show").style.display = "block";
+				document.getElementById("hide_show1").style.display = "block";
+		    }
+		    else
+		    {
+		       document.getElementById("hide_show").style.display = "none";
+		       document.getElementById("hide_show1").style.display = "none";
+		    }
+		}
+
+</script>
 <!-- MODAL END -->
 @stop
