@@ -11,6 +11,26 @@
 |
 */
 
+Route::get('test', function() {
+	$url = 'https://www.itexmo.com/php_api/api.php';
+	$itexmo = array('1' => '09396531608', '2' => 'This is a test message! Blablabla...qwertyuiop', '3' => '09396531608_RI1AE');
+	$param = array(
+	    'http' => array(
+	        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+	        'method'  => 'POST',
+	        'content' => http_build_query($itexmo),
+	    ),
+	);
+	$context  = stream_context_create($param);
+	
+	return file_get_contents($url, false, $context);
+});
+
+Route::get('pdf', function() {
+	return PDF::loadView('pdf.test', [])
+		->stream();
+});
+
 Route::get('/', function () {
     return view('master');
 });

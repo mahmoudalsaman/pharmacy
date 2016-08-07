@@ -12,7 +12,7 @@ use App\Product;
 use App\ProductPriceHistory;
 use App\ProductTag;
 
-use Carbon;
+use Carbon\Carbon;
 use DB;
 use Input;
 
@@ -52,7 +52,7 @@ class ProductApi extends Controller
             DB::beginTransaction();
                 
             $product = Product::create(array(
-                'brand_id_fk'   => session('brand_id'),
+                'brand_id_fk'   => $request->brand_id_fk,
                 'name'          => $request->name,
                 'description'   => $request->description != null ? $request->description : null,
                 'image_path'    => null, // for now
@@ -75,13 +75,13 @@ class ProductApi extends Controller
             DB::commit();
 
             return response()->json(array(
-                'message'   => 'Product successfully created!'
+                'message'   => $product->product_id
             ));
         } catch(QueryException $ex) {
             DB::rollBack();
 
             return response()->json(array(
-                'message'   => 'Product creation failed!'
+                'message'   => 'Product creation failed! ' . $ex->getMessage()
             ));
         }
     }
@@ -171,10 +171,14 @@ class ProductApi extends Controller
     public function queryProduct($id)
     {
         $productQuery = Product::join('brands', 'products.brand_id_fk', '=', 'brands.brand_id')
-        leftJoin('product_tags', 'product_tags.product_id_fk', '=', 'products.product_id')
+        ->leftJoin('product_tags', 'product_tags.product_id_fk', '=', 'products.product_id')
+        ->join('tags', 'product_tags.tag_id_fk', '=', 'tags.tag_id')
         ->select(
             'products.product_id',
             'products.brand_id_fk',
+            'brands.name as brand_name',
+            'tags.name as tag_name',
+            'products.name as product_name',
             'products.description',
             'products.image_path',
             'products.price',
@@ -183,13 +187,9 @@ class ProductApi extends Controller
             'products.deleted_at'
         );
 
-        if($id && session('brand_id')) {
+        if($id) {
             $productQueryResult = $productQuery->where('products.product_id', '=', $id)
-                ->where('products.brand_id_fk', '=', session('brand_is'))
                 ->first();
-        } else if(!$id && session('brand_id')) {
-            $productQueryResult = $productQuery->where('products.brand_id_fk', '=', session('brand_id'))
-                ->get();
         } else {
             $productQueryResult = $productQuery
                 ->get();
