@@ -9,6 +9,11 @@ app.controller('BranchController', function($http, $q, DTOptionsBuilder, DTColum
 	.withPaginationType('full_numbers');
 
 	vm.dtColumns = [
+		DTColumnBuilder.newColumn(null).withTitle('')
+            .notSortable()
+            .withClass('select-checkbox')
+            // Need to define the mRender function, otherwise we get a [Object Object]
+            .renderWith(function() {return '';}),
 		DTColumnBuilder.newColumn('branch_id').withTitle('Branch ID'),
 		DTColumnBuilder.newColumn('branch_id').withTitle('Image'),
 		DTColumnBuilder.newColumn('name').withTitle('Branch Name'),

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+use Carbon\Carbon;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -19,7 +20,9 @@ class UsersTableSeeder extends Seeder
         	'last_name'		=> 'Pormon',
         	'date_of_birth'	=> '1996-08-02',
         	'password'		=> bcrypt('admin12345'),
-        	'cell_number'	=> '09123456789'
+        	'cell_number'	=> '09123456789',
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now()
         ));
     }
 }

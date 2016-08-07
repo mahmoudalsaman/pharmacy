@@ -20,6 +20,7 @@ class CreateCustomerSalesInvoicesTable extends Migration
                 ->unsigned();
             $table->text('remarks')
                 ->nullable();
+            $table->string('status');
             $table->datetime('ordered_at');
 
             $table->foreign('user_id_fk')

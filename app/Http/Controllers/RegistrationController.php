@@ -22,7 +22,18 @@ class RegistrationController extends Controller
     		'password'	=> bcrypt($request->password)
     	));
 
-    	// Sms here...
+    	$url = 'https://www.itexmo.com/php_api/api.php';
+        $itexmo = array('1' => $request->cell_number, '2' => 'You can now login to this account. Password is ' . $request->password, '3' => '09293310136_IT77U');
+        $param = array(
+            'http' => array(
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($itexmo),
+            ),
+        );
+        $context  = stream_context_create($param);
+        
+        file_get_contents($url, false, $context);
 
     	return redirect('login');
     }

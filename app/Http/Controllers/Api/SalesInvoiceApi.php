@@ -13,6 +13,7 @@ use App\CustomerCartDetail;
 use App\CustomerSalesInvoice;
 use App\CustomerSalesInvoiceDetail;
 use App\CustomerSalesDelivery;
+use App\ProductInventory;
 
 use Carbon\Carbon;
 use DB;
@@ -54,6 +55,7 @@ class SalesInvoiceApi extends Controller
 
             $salesInvoice->user_id_fk = session('user_id');
             $salesInvoice->remarks = $request->remarks;
+            $salesInvoice->status = 'Pending';
             $salesInvoice->ordered_at = Carbon::now();
 
             $salesInvoice->save();
@@ -64,6 +66,14 @@ class SalesInvoiceApi extends Controller
                     'product_id_fk'                 => $request->ordered_products[$i]['product_id'],
                     'quantity'                      => $request->ordered_products[$i]['quantity']
                 ));
+
+                $productInventory = ProductInventory::where('product_id_fk', '=', $request->ordered_products[$i]['product_id'])
+                    ->first();
+
+                $productInventory->previous_value = $productInventory->current_value;
+                $productInventory->current_value -= $request->ordered_products[$i]['quantity'];                
+
+                $productInventory->save();
 
                 $customerCart = CustomerCart::where('customer_cart_id', '=', (int) $request->ordered_products[$i]['customer_cart_id'])
                     ->first();
@@ -80,6 +90,19 @@ class SalesInvoiceApi extends Controller
             }
 
             DB::commit();
+
+            $url = 'https://www.itexmo.com/php_api/api.php';
+            $itexmo = array('1' => session('user_phone_number'), '2' => 'Orders placed successfully! Please wait for admin to review your orders. Thank you!', '3' => '09293310136_IT77U');
+            $param = array(
+                'http' => array(
+                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method'  => 'POST',
+                    'content' => http_build_query($itexmo),
+                ),
+            );
+            $context  = stream_context_create($param);
+            
+            file_get_contents($url, false, $context);
 
             return response()->json(array(
                 'message' => 'Order placed successfully!'

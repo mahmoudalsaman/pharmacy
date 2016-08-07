@@ -23,7 +23,9 @@ Route::get('test', function() {
 	);
 	$context  = stream_context_create($param);
 	
-	return file_get_contents($url, false, $context);
+	file_get_contents($url, false, $context);
+
+	return 'Yey!';
 });
 
 Route::get('pdf', function() {
@@ -66,7 +68,21 @@ Route::get('inventory', function () {
 });
 
 Route::get('transaction', function () {
-    return view('transaction');
+    return view('transaction')
+    	->with('order_transactions', App\CustomerSalesInvoice::join('users', 'customer_sales_invoices.user_id_fk', '=', 'users.user_id')
+    		->leftJoin('customer_sales_deliveries', 'customer_sales_deliveries.customer_sales_invoice_id_fk', '=', 'customer_sales_invoices.customer_sales_invoice_id')
+    		->join('customer_sales_invoice_details', 'customer_sales_invoice_details.customer_sales_invoice_id_fk', '=', 'customer_sales_invoices.customer_sales_invoice_id')
+    		->select(
+    			'customer_sales_invoices.customer_sales_invoice_id',
+    			'users.first_name',
+    			'users.middle_name',
+    			'users.last_name',
+    			'customer_sales_invoices.ordered_at',
+    			'customer_sales_invoices.status',
+    			'customer_sales_invoices.remarks',
+    			'customer_sales_deliveries.status as delivery_status'
+    		)
+    		->get());
 });
 
 Route::get('login', function () {
@@ -113,5 +129,6 @@ Route::group(['prefix' => 'pharmacy/api'], function() {
 		Route::resource('uoms', 'Api\\UnitOfMeasurementApi');
 		Route::resource('carts', 'Api\\CartApi');
 		Route::resource('sales-invoices', 'Api\\SalesInvoiceApi');
+		Route::resource('sales-approvals', 'Api\\SalesApprovalApi');
 	});
 });

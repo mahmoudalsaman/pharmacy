@@ -10,52 +10,47 @@
 			<form class="form-horizontal" role="form" >
 				<div class="form-group">		
 					<div class="table-responsive">
-						<table class="table table-bordered table-hover" id="branch_table">
+						<table class="table table-bordered table-hover" id="transaction_table">
 							<thead>
 								<tr>
-									<th class="hidden"><center>Transaction ID</center></th>
-									<th></th>
+									{{-- <th class="hidden"><center>Transaction ID</center></th>
+									<th></th> --}}
 									<th><center>Customer Name</center></th>
+									<th><center>Order #</center></th>
 									<th><center>Order Date</center></th>
-									<th><center>Delivery Date</center></th>
+									<th><center>Action</center></th>
 									<th><center>Order Status</center></th>
 									<th><center>Ordered Product/s</center></th>
-									<th><center>Approved By</center></th>
-									<th><center>Total Amount Due</center></th>
+									<th><center>Type</center></th>
 									<th><center>Delivery Status</center></th>
 								</tr>
 							</thead>
-							<tbody>							
+							<tbody>				
+								@foreach($order_transactions as $order_transaction)			
 									<tr>
-										<td hidden="">TRAN0001</td>
+										{{-- <td hidden="">TRAN0001</td>
 										<td>
 											<div class="checkbox">
 											  <label><input type="checkbox" value=""></label>
 											</div>
-										</td>
-										<td>John Felix Lim</td>
-										<td>08-08-2016</td>
-										<td>08-08-2016</td>
+										</td> --}}
+										<td>{!! $order_transaction->first_name . ' ' . $order_transaction->middle_name . ' ' . $order_transaction->last_name !!}</td>
+										<td>{!! $order_transaction->customer_sales_invoice_id !!}</td>
+										<td>{!! $order_transaction->ordered_at !!}</td>
 										<td>
-											<button type="button" class="btn btn-primary">
+											<button type="button" class="btn btn-primary" onclick="approveOnClick('{!! $order_transaction->customer_sales_invoice_id !!}')">
 												Approve
 											</button>
-											<button type="button" class="btn btn-danger">
+											<button type="button" class="btn btn-danger" onclick="rejectOnClick('{!! $order_transaction->customer_sales_invoice_id !!}')">
 												Reject
 											</button>
 										</td>
+										<td>{!! $order_transaction->status !!}</td>
 										<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ordered_list">View Details</button></td>
-										<td>Alexander Pierce</td>
-										<td>1012.50</td>
-										<td>
-											<button type="button" class="btn btn-primary">
-												Delivered
-											</button>
-											<button type="button" class="btn btn-danger">
-												Cancelled
-											</button>
-										</td>
+										<td>{!! $order_transaction->remarks !!}</td>
+										<td>{!! $order_transaction->delivery_status != null ? $order_transaction->delivery_status : '---' !!}</td>
 									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>	
@@ -127,6 +122,20 @@
     </div>
 </div>
 
+<script type="text/javascript">
+	$('#transaction_table').DataTable();
 
+	function approveOnClick(id)
+	{
+		// $.ajax({
+	
+		// });
+	}
+
+	function rejectOnClick(id)
+	{
+		alert(id);
+	}
+</script>
 
 @stop
