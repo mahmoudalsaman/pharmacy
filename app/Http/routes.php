@@ -32,7 +32,11 @@ Route::get('pdf', function() {
 });
 
 Route::get('/', function () {
-    return view('master');
+    return redirect('login');
+});
+
+Route::get('home', function() {
+	return view('master');
 });
 
 Route::get('employee', function () {
@@ -84,6 +88,8 @@ Route::get('cart', function () {
 Route::get('uom', function () {
     return view('uom');
 });
+
+Route::post('login', 'LoginController@doLogin');
 
 Route::group(['prefix' => 'pharmacy/api'], function() {
 	// Api version 1
