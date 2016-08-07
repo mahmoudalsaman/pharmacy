@@ -127,7 +127,7 @@ class UserApi extends Controller
 
     public function queryUser($id)
     {
-        $userQuery = User::join('branches', 'users.branch_id_fk', '=', 'branches.branch_id')
+        $userQuery = User::leftJoin('branches', 'users.branch_id_fk', '=', 'branches.branch_id')
         ->select(
             'users.user_id',
             'branches.name',

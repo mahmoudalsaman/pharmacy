@@ -13,7 +13,7 @@ app.controller('EmployeeAddUpdateController', function($http, appSettings) {
 				'last_name': vm.formEmployee.lastName,
 				'date_of_birth': vm.formEmployee.birthDate,
 				'cell_number': vm.formEmployee.phoneNumber,
-				'password': vm.formEmployee.password
+				'password': 'employee12345'
 			}),
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
