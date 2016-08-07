@@ -10,6 +10,37 @@
 }
 </style>
 
+<div class="col-md-12">
+	<div class="form-group col-md-3">
+	<label>Search</label>
+		<div class="input-group">
+			<input type="text" class="form-control">
+			<span class="input-group-addon"><i class="fa fa-search"></i></span>
+		</div>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label>Category</label>
+		<select class="form-control" style="width: 100%;">
+		  <option selected="selected">All</option>
+		  <option>Pampabata</option>
+		  <option>Pampatanda</option>
+		</select>
+	</div>
+
+	<div class="form-group col-md-3">
+		<label>Brand</label>
+		<select class="form-control" style="width: 100%;">
+		  <option selected="selected">All</option>
+		  <option>Toyo</option>
+		  <option>Suka</option>
+		</select>
+	</div>
+</div>
+
+
+<div class="col-md-12">
+<!-- START -->
  <div class="col-md-4" style="margin-top:3%">
     <!-- colored -->
     <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
@@ -23,9 +54,89 @@
 			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">BUY</button>
          </center>
     <!-- end colored -->
-  </div>
-  </a>
+    </a>
+  </div>  
 </div>
+<!-- END -->
+
+<!-- START -->
+ <div class="col-md-4" style="margin-top:3%">
+    <!-- colored -->
+    <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
+        <div class="img"><img src="images/liza.jpg" alt="img"></div>
+        	<p><b>Product Name: {asds}</b></p>
+        	<p style="">Description: {asdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdad}</p>                          	
+        	<p>Price: {3.3}</p>
+        	<p>Quantity Ordered: </p>
+        	<p>Total Amount: </p>
+		<center>
+			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">BUY</button>
+         </center>
+    <!-- end colored -->
+    </a>
+  </div>  
+</div>
+<!-- END -->
+
+<!-- START -->
+ <div class="col-md-4" style="margin-top:3%">
+    <!-- colored -->
+    <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
+        <div class="img"><img src="images/liza.jpg" alt="img"></div>
+        	<p><b>Product Name: {asds}</b></p>
+        	<p style="">Description: {asdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdad}</p>                          	
+        	<p>Price: {3.3}</p>
+        	<p>Quantity Ordered: </p>
+        	<p>Total Amount: </p>
+		<center>
+			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">BUY</button>
+         </center>
+    <!-- end colored -->
+    </a>
+  </div>  
+</div>
+<!-- END -->
+
+<!-- START -->
+ <div class="col-md-4" style="margin-top:3%">
+    <!-- colored -->
+    <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
+        <div class="img"><img src="images/liza.jpg" alt="img"></div>
+        	<p><b>Product Name: {asds}</b></p>
+        	<p style="">Description: {asdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdad}</p>                          	
+        	<p>Price: {3.3}</p>
+        	<p>Quantity Ordered: </p>
+        	<p>Total Amount: </p>
+		<center>
+			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">BUY</button>
+         </center>
+    <!-- end colored -->
+    </a>
+  </div>  
+</div>
+<!-- END -->
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- MODAL -->
 
 <div class="modal modal-default" id="add_to_cart" role="dialog" style="margin-top:10%">

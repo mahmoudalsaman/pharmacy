@@ -12,12 +12,32 @@
 	        </select>
 	  	</div>
 
+
+	  	<div class="form-group col-md-3">
+			<label>Branch</label>
+			<select class="form-control" style="width: 100%;">
+			  <option selected="selected">All</option>
+			  <option>Japan</option>
+			  <option>Manila</option>
+			</select>
+		</div>
+
+
 	  	<div class="col-md-3">
 			<div class="form-group">
 		      <label>Total amount Due</label>
 		      <input type="text" class="form-control" id="" placeholder="0.00" disabled="">
 		    </div>
 		</div>
+
+
+		<div class="col-md-3">
+			<label></label>
+			<div class="form-group">
+			<button type="button" class="btn btn-danger">Proceed to Check Out</button>
+		</div>
+		</div>
+
 	</div>
 
 	<div class="col-md-12" id="hide_show" hidden="">
@@ -26,12 +46,6 @@
 	      <input type="text" class="form-control" id="delivery_address" placeholder="Delivery Address">
 		</div>	
 	</div>	
-
-	<div class="col-md-12" id="">
-  		<div class="form-group col-md-1 col-md-offset-3">
-	<button type="button" class="btn btn-primary">Proceed to Check Out</button>
-	</div>
-	</div>
 </div>
 	
 <div class="col-md-12">
