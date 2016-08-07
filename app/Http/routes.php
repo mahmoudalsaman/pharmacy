@@ -89,6 +89,19 @@ Route::get('register', function () {
     return view('register');
 });
 
+Route::get('home', function() {
+	return view('master');
+});
+
+Route::get('logout', function() {
+	session()->flush();
+
+	return redirect('login');
+});
+
+Route::post('login', 'LoginController@doLogin');
+Route::post('register', 'RegistrationController@doRegister');
+
 Route::group(['prefix' => 'pharmacy/api'], function() {
 	// Api version 1
 	Route::group(['prefix' => 'v1'], function() {

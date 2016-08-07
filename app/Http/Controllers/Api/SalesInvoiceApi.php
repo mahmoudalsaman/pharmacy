@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\CustomerCart;
+use App\CustomerCartDetail;
+use App\CustomerSalesInvoice;
+use App\CustomerSalesInvoiceDetail;
+use App\CustomerSalesDelivery;
+
+use Carbon\Carbon;
+use DB;
 
 class SalesInvoiceApi extends Controller
 {
@@ -37,7 +47,50 @@ class SalesInvoiceApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $salesInvoice = new CustomerSalesInvoice();
+
+            $salesInvoice->user_id_fk = session('user_id');
+            $salesInvoice->remarks = $request->remarks;
+            $salesInvoice->ordered_at = Carbon::now();
+
+            $salesInvoice->save();
+
+            for($i = 0; $i < count($request->ordered_products); $i++) {
+                CustomerSalesInvoiceDetail::create(array(
+                    'customer_sales_invoice_id_fk'  => $salesInvoice->customer_sales_invoice_id,
+                    'product_id_fk'                 => $request->ordered_products[$i]['product_id'],
+                    'quantity'                      => $request->ordered_products[$i]['quantity']
+                ));
+
+                $customerCart = CustomerCart::where('customer_cart_id', '=', (int) $request->ordered_products[$i]['customer_cart_id'])
+                    ->first();
+
+                $customerCart->delete();
+            }
+
+            if($request->remarks == 'Delivery') {
+                CustomerSalesDelivery::create(array(
+                    'customer_sales_invoice_id_fk'  => $salesInvoice->customer_sales_invoice_id,
+                    'shipping_address'              => $request->delivery_address,
+                    'status'                        => 'Pending'
+                ));
+            }
+
+            DB::commit();
+
+            return response()->json(array(
+                'message' => 'Order placed successfully!'
+            ));
+        } catch(QueryException $ex) {
+            DB::rollBack();
+
+            return response()->json(array(
+                'message' => 'Order placed failed! ' . $ex
+            ));
+        }
     }
 
     /**

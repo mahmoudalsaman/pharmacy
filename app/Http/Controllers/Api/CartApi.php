@@ -68,9 +68,8 @@ class CartApi extends Controller
             $productQuantity = ProductInventory::select('current_value')
                 ->where('product_id_fk', '=', $request->product_id)
                 ->first();
-                
 
-            if(count($customerCartCheck) > 0) {
+            if($customerCartCheck->customer_cart_id) {
                 $customerCartDetail = CustomerCartDetail::where('customer_cart_detail_id', '=', $customerCartCheck->customer_cart_detail_id)
                     ->first();
                 $subtotal = $customerCartDetail->quantity + $request->quantity;

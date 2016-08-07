@@ -62,6 +62,15 @@ app.controller('CartController', function($http, $q, DTOptionsBuilder, DTColumnB
 		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/carts')
 			.then(function(response) {
 				defer.resolve(response.data.active_carts);
+				
+				console.log(response.data.active_carts.length);
+
+				if(response.data.active_carts.length <= 0) {
+					vm.noCheckOut = true;
+				} else {
+					vm.noCheckOut = false;
+				}
+				
 				vm.totalAmountDueUntouched = response.data.active_cart_total[0].total;
 
 				if(vm.totalAmountDueUntouched > 1 && vm.totalAmountDueUntouched < 500 && vm.deliveryType == 'delivery') {
@@ -96,20 +105,30 @@ app.controller('CartController', function($http, $q, DTOptionsBuilder, DTColumnB
 	}
 
 	vm.checkOutOnClick = function() {
-		console.log(tableService.getTableInstance().rows().data());
+		var tableData = tableService.getTableInstance().rows().data();
+
+		var tableDataFiltered = [];
+
+		for(var i = 0; i < tableData.count(); i++) {
+			tableDataFiltered.push(tableData[i]);
+		}
 
 		$http({
 			url: appSettings.BASE_URL + 'pharmacy/api/v1/sales-invoices',
 			method: 'POST',
 			data: $.param({
-				'branch_id_fk': vm.formEmployee.branch.branch_id,
+				'remarks': vm.isPickUp == false ? 'Delivery' : 'Pick-up',
+				'delivery_address': vm.deliveryAddress,
+				'ordered_products': tableDataFiltered
 			}),
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			}
 		}).then(function(response) {
-		
 			alert(response.data.message);
+
+			vm.noCheckOut = true;
+			$window.location = appSettings.BASE_URL + 'cart';
 		}, function(response) {
 			alert(response.data.message);
 		});

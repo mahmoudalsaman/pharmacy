@@ -19,8 +19,7 @@ class CreateCustomerSalesDeliveriesTable extends Migration
             $table->integer('customer_sales_invoice_id_fk')
                 ->unsigned();
             $table->text('shipping_address');
-            $table->boolean('is_delivered')
-                ->default(false);
+            $table->string('status');
 
             $table->foreign('customer_sales_invoice_id_fk')
                 ->references('customer_sales_invoice_id')

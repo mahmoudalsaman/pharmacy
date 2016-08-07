@@ -54,7 +54,7 @@
     </form>
     <center>
       <a href="#" data-toggle="modal" data-target="#forgot_pass_modal">Forgot Password</a><br>
-      <a href="register" class="text-center">Register</a>
+      <a href="{!! url('register') !!}" class="text-center">Register</a>
     </center>
   </div>
 </div>

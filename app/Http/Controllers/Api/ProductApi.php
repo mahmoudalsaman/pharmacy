@@ -82,7 +82,7 @@ class ProductApi extends Controller
             DB::commit();
 
             return response()->json(array(
-                'message'   => $product->product_id
+                'message'   => 'Product successfully created!'
             ));
         } catch(QueryException $ex) {
             DB::rollBack();

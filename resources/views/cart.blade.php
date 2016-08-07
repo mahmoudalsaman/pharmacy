@@ -25,7 +25,7 @@
 		<div class="col-md-3">
 			<label></label>
 			<div class="form-group">
-			<button type="button" class="btn btn-danger" ng-click="vmCart.checkOutOnClick()">Proceed to Check Out</button>
+			<button type="button" class="btn btn-danger" ng-click="vmCart.checkOutOnClick()" ng-disabled="vmCart.noCheckOut">Proceed to Check Out</button>
 		</div>
 		</div>
 
@@ -34,7 +34,7 @@
 	<div class="col-md-12" id="hide_show" ng-if="!vmCart.isPickUp">
   		<div class="form-group col-md-3">
 	      <label>Delivery Address</label>
-	      <input type="text" class="form-control" id="delivery_address" placeholder="Delivery Address">
+	      <input type="text" class="form-control" id="delivery_address" placeholder="Delivery Address" ng-model="vmCart.deliveryAddress">
 		</div>	
 	</div>	
 

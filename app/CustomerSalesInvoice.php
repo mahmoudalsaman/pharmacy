@@ -8,11 +8,11 @@ class CustomerSalesInvoice extends Model
 {
     public $primaryKey = 'customer_sales_invoice_id';
 
+    public $timestamps = false;
+
     protected $fillable = array(
-    	'branch_id_fk',
     	'user_id_fk',
     	'remarks',
-    	'amount_paid',
     	'ordered_at'
     );
 }

@@ -20,8 +20,7 @@ class CreateCustomerSalesDeliveryApprovalsTable extends Migration
                 ->unsigned();
             $table->integer('user_id_fk')
                 ->unsigned();
-            $table->boolean('is_approved')
-                ->default(false);
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('customer_sales_delivery_id_fk', 'fk_delivery')

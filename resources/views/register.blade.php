@@ -16,6 +16,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
 
+  <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
 </head>
 <body class="hold-transition login-page">
 <!-- REGISTER -->
@@ -25,23 +26,23 @@
   <div class="panel-body">
   <h3><center>Customer Registration</center></h3>
   <hr>
-<form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "" id="">
-
+<form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "{!! url('register') !!}">
+    {!! csrf_field() !!}
         <div class="box-body">
         <div class="col-md-5">
           <div class="form-group">
             <label>Firstname *</label>
-            <input type="text" class="form-control" id="cust_fname" placeholder="Firstname">
+            <input type="text" class="form-control" id="cust_fname" name="first_name" placeholder="Firstname">
           </div>
 
           <div class="form-group">
             <label>Middlename</label>
-            <input type="text" class="form-control" id="cust_mname" placeholder="Middlename">
+            <input type="text" class="form-control" id="cust_mname" name="middle_name" placeholder="Middlename">
           </div>
 
           <div class="form-group">
             <label>Lastname*</label>
-            <input type="text" class="form-control" id="cust_lname" placeholder="Lastname">
+            <input type="text" class="form-control" id="cust_lname" name="last_name" placeholder="Lastname">
           </div>   
       </div>
 
@@ -52,13 +53,18 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="text" class="form-control pull-right" id="datepicker">
+                <input type="text" class="form-control pull-right" name="date_of_birth" id="datepicker">
               </div>                
             </div>
       
         <div class="form-group">
             <label>Mobile Number*</label>
-            <input type="text" class="form-control" id="cust_mobile" placeholder="Mobile Number">
+            <input type="text" class="form-control" id="cust_mobile" name="cell_number" placeholder="Mobile Number">
+          </div>
+
+        <div class="form-group">
+            <label>Password*</label>
+            <input type="password" class="form-control" id="cust_mobile" name="password" placeholder="Password">
           </div>   
       </div>
 
@@ -78,6 +84,7 @@
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 <script src="../../plugins/iCheck/icheck.min.js"></script>
+<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
 
 <script>
   $(function () {
@@ -87,6 +94,12 @@
       increaseArea: '20%' // optional
     });
   });
+
+  $('#datepicker').datepicker({
+      autoclose: true
+    });
+
+    $(".select2").select2();
 </script>
 </body>
 </html>
