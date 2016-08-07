@@ -19,7 +19,7 @@ class BranchApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_branches' => $this->queryBranch(null);
+            'active_branches' => $this->queryBranch(null)
         ));
     }
 
@@ -73,7 +73,7 @@ class BranchApi extends Controller
     public function edit($id)
     {
         return response()->json(array(
-            'branch_details' => $this->queryBranch($id);
+            'branch_details' => $this->queryBranch($id)
         ));
     }
 
