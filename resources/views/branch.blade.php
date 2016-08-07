@@ -41,7 +41,7 @@
 				  	<div class="col-md-5">
 					    <div class="form-group">
 					      <label>Branch Name *</label>
-					      <input type="text" class="form-control" id="branch_name" placeholder="Branch Name" ng-model="vmBranchAddUpdate.formBranch.branchName">
+					      <input type="text" class="form-control" id="branch_name" placeholder="Branch Name"ng-model="vmBranchAddUpdate.formBranch.branchName">
 					    </div>
 
 					    <div class="form-group">
