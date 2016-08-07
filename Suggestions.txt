@@ -13,3 +13,13 @@ Kasi yung kapag magsesend ang admin ng transaction code sa customer through thei
 Ah kuya tapos dapat din po pala nakasulat din sa transactions yung verification code para tingnan na rin ng admin dun para may isa pang copy maliban sa receipt
 
 09293310136_IT77U
+
+tapos palagyan din po ng limit yung pagenter ng contact number. 11 characters lang po for the 11 numbers of a cellphone number
+
+Ayun isa pa yung quantity. Dapat nakabase yung product din sa stocks. Kung nagexceed ng binigay na quantity si customer sa available na stocks, dapat error...
+
+tapos palagyan din po ng limit yung pagenter ng contact number. 11 characters lang po for the 11 numbers of a cellphone number
+
+Isa pa kuya pala. Yung sa order form po, kapag pipili ng bibilhin si customer, dapat kapag habang nakaclick siya sa isang product, tapos kapag nagclick ulit, dun mapupunta yung selection na bago.
+
+Isa pa kuya pala. Yung sa order form po, kapag pipili ng bibilhin si customer, dapat kapag habang nakaclick siya sa isang product, tapos kapag nagclick ulit, dun mapupunta yung selection na bago.

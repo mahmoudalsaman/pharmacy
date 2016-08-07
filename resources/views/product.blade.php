@@ -52,6 +52,17 @@
 						      <label>Product Price *</label>
 						      <input type="text" class="form-control" id="product_price" placeholder="Product Price" ng-model="vmProductAddUpdate.formProduct.productPrice">
 						    </div>	
+
+						    <div class="form-group">
+						      <label>Dosage Amount *</label>
+						      <input type="text" class="form-control" id="product_price" placeholder="Dosage Amount" ng-model="vmProductAddUpdate.formProduct.dosageAmount">
+						    </div>	
+
+						    <div class="form-group">
+						      <label>Unit of Measurement</label>
+				                <select class="form-control select2" style="width: 100%;" ng-model="vmProductAddUpdate.formProduct.uom" ng-options="uom as uom.name for uom in vmProductAddUpdate.uoms track by uom.unit_of_measurement_id">
+				                </select>
+						    </div>	
 						</div>
 
 

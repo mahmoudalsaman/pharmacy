@@ -51,26 +51,24 @@ class ProductApi extends Controller
         try {
             DB::beginTransaction();
                 
-            $product = Product::create(array(
-                'brand_id_fk'   => $request->brand_id_fk,
-                'name'          => $request->name,
-                'description'   => $request->description != null ? $request->description : null,
-                'image_path'    => null, // for now
-                'price'         => $request->price
-            ));
+            $product = new Product();
+
+            $product->brand_id_fk = $request->brand_id_fk;
+            $product->name = $request->name;
+            $product->description = $request->description != null ? $request->description : null;
+            $product->image_path = null; // for now
+            $product->category_id_fk = $request->category_id_fk;
+            $product->price = $request->price;
+            $product->amount = $request->amount;
+            $product->unit_of_measurement_id_fk = $request->unit_of_measurement_id_fk;
+
+            $product->save();
 
             ProductPriceHistory::create(array(
                 'product_id_fk' => $product->product_id,
                 'price'         => $request->price,
                 'created_at'    => Carbon::now()
             ));
-
-            for($i = 0; $i < count($request->tags); $i++) {
-                ProductTag::create(array(
-                    'product_id_fk' => $product->product_id_fk,
-                    'tag_id_fk'     => $request->tags[$i]
-                ));
-            }
 
             DB::commit();
 
@@ -171,14 +169,16 @@ class ProductApi extends Controller
     public function queryProduct($id)
     {
         $productQuery = Product::join('brands', 'products.brand_id_fk', '=', 'brands.brand_id')
-        ->leftJoin('product_tags', 'product_tags.product_id_fk', '=', 'products.product_id')
-        ->join('tags', 'product_tags.tag_id_fk', '=', 'tags.tag_id')
+        ->join('categories', 'products.category_id_fk', '=', 'categories.category_id')
+        ->join('unit_of_measurements', 'products.unit_of_measurement_id_fk', '=', 'unit_of_measurements.unit_of_measurement_id')
         ->select(
             'products.product_id',
             'products.brand_id_fk',
             'brands.name as brand_name',
-            'tags.name as tag_name',
+            'categories.name as category_name',
             'products.name as product_name',
+            'unit_of_measurements.abbreviation',
+            'products.amount',
             'products.description',
             'products.image_path',
             'products.price',

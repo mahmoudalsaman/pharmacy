@@ -2,6 +2,7 @@ app.controller('ProductAddUpdateController', function($http, appSettings, $windo
 	var vm = this;
 
 	vm.productOnSubmit = function() {
+		console.log(vm.formProduct.category.category_id);
 		$http({
 			url: appSettings.BASE_URL + 'pharmacy/api/v1/products',
 			method: 'POST',
@@ -10,7 +11,9 @@ app.controller('ProductAddUpdateController', function($http, appSettings, $windo
 				'brand_id_fk': vm.formProduct.brand.brand_id,
 				'description': vm.formProduct.productDescription,
 				'price': vm.formProduct.productPrice,
-				'tags': [vm.formProduct.category.tag_id]
+				'category_id_fk': vm.formProduct.category.category_id,
+				'amount': vm.formProduct.dosageAmount,
+				'unit_of_measurement_id_fk': vm.formProduct.uom.unit_of_measurement_id,
 			}),
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -33,11 +36,18 @@ app.controller('ProductAddUpdateController', function($http, appSettings, $windo
 				alert(response.data.message);
 			});
 
-		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/tags')
+		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/categories')
 			.then(function(response) {
-				vm.categories = response.data.active_tags;
+				vm.categories = response.data.active_categories;
 			}, function(response) {
 				alert(response.data.message);
 			});
+
+		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/uoms')
+			.then(function(response) {
+				vm.uoms = response.data.active_uoms;
+			}, function(response) {
+				alert(response.data.message);
+			});		
 	};
 })
