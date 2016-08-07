@@ -62,7 +62,12 @@
 					    <div class="form-group">
 					      <label>Brand Description </label>
 					      <input type="text" class="form-control" id="brand__description" placeholder="Brand Description">
-					    </div>	
+					    </div>
+
+					    <div class="form-group col-md-12">
+				          <label for="exampleInputFile">Choose Image</label>
+				          <input type="file" id="exampleInputFile">        
+				        </div>	
 					</div>
 
 					<div class="col-sm-12 modal-footer">

@@ -18,8 +18,7 @@
 									<th>Middlename</th>
 									<th>Lastname</th>		
 									<th>Birthdate</th>
-									<th>Mobile Number</th>	
-									<th>Address</th>
+									<th>Mobile Number</th>
 								</tr>
 							</thead>
 							<tbody>							
@@ -28,7 +27,6 @@
 										<td>E</td>
 										<td>I</td>
 										<td>O</td>
-										<td>U</td>
 										<td>U</td>
 										<td>U</td>
 									</tr>
@@ -78,7 +76,16 @@
 					    <div class="form-group">
 					      <label>Lastname*</label>
 					      <input type="text" class="form-control" id="emp_lname" placeholder="Lastname">
-					    </div>   
+					    </div> 
+
+					    <div class="form-group">
+			                <label>Branch</label>
+			                <select class="form-control select2" style="width: 100%;">
+			                  <option selected="selected">Heaven</option>
+			                  <option>Hell</option>
+			                </select>
+			            </div>
+
 					</div>
 
 					<div class="col-md-5 col-md-offset-1">		
@@ -96,11 +103,6 @@
 					      <label>Mobile Number*</label>
 					      <input type="text" class="form-control" id="emp_mobile" placeholder="Mobile Number">
 					    </div>   
-
-					     <div class="form-group">
-					      <label>Address*</label>
-					      <input type="text" class="form-control" id="emp_address" placeholder="Address">
-					    </div> 
 					</div>
 
 					<div class="col-sm-12 modal-footer">
