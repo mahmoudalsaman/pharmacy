@@ -13,16 +13,6 @@
 	  	</div>
 
 
-	  	<div class="form-group col-md-3">
-			<label>Branch</label>
-			<select class="form-control" style="width: 100%;">
-			  <option selected="selected">All</option>
-			  <option>Japan</option>
-			  <option>Manila</option>
-			</select>
-		</div>
-
-
 	  	<div class="col-md-3">
 			<div class="form-group">
 		      <label>Total amount Due</label>
@@ -46,30 +36,63 @@
 	      <input type="text" class="form-control" id="delivery_address" placeholder="Delivery Address">
 		</div>	
 	</div>	
+
+
+	<div class="col-md-12" id="hide_show1" hidden="">
+  		<div class="form-group col-md-3">
+	      <label>Delivery Charge</label>
+	      <input type="text" class="form-control" id="delivery_charge" placeholder="Delivery Charge" disabled="">
+		</div>	
+	</div>
+
 </div>
 	
 <div class="col-md-12">
-	<h3><center>Order Summary</center></h3>
-	<hr>
-<!-- START -->
-	<div class="col-md-4" style="margin-top:3%">
-    <!-- colored -->
-    <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
-        <div class="img"><img src="images/liza.jpg" alt="img"></div>
-        	<p><b>Product Name: {asds}</b></p>
-        	<p style="">Description: {asdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdad}</p>                          	
-        	<p>Price: {3.3}</p>
-        	<p>Quantity Ordered: </p>
-        	<p>Total Amount: </p>
-		<center>	
-			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#cart">Edit</button>
-			<button type="button" class="btn btn-danger">Delete</button>
-         </center>
-    <!-- end colored -->
-    	</a>
-	  </div>  
+
+
+<div class="panel panel-primary box-body" style="margin-top:5%">
+  <div class="panel-body">
+  		<center>
+			<h2>Cart</h2>
+			<h4>(Order Summary)</h4>
+		</center><br>	
+			<form class="form-horizontal" role="form" >
+				<div class="form-group">		
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover" id="">
+							<thead>
+								<tr>
+									<th>Product ID</th>
+									<th>Product Name</th>
+									<th>Product Description</th>
+									<th>Product Price</th>
+									<th>Quantity Ordered</th>
+									<th>Total Amount</th>
+								</tr>
+							</thead>
+							<tbody>							
+									<tr>
+										<td>A</td>
+										<td>E</td>
+										<td>I</td>
+										<td>A</td>
+										<td>E</td>
+										<td>I</td>										
+									</tr>
+							</tbody>
+						</table>
+					</div>	
+				</div>
+				
+				<center>					
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
+					data-toggle="modal" data-target="#ordered_modal">Edit Order</button>
+				</center>
+				<br>
+			</form>
 	</div>
-<!-- END -->
+</div>	
+
 
 
 </div>
@@ -143,10 +166,12 @@
 		    
 		    if (selectedValue == "delivery")
 		    {   document.getElementById("hide_show").style.display = "block";
+				document.getElementById("hide_show1").style.display = "block";
 		    }
 		    else
 		    {
 		       document.getElementById("hide_show").style.display = "none";
+		       document.getElementById("hide_show1").style.display = "none";
 		    }
 		}
 
