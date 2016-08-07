@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsTable extends Migration
+class CreateUnitOfMeasurementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,13 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function(Blueprint $table) {
+        Schema::create('unit_of_measurements', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->increments('category_id');
+            $table->increments('unit_of_measurement_id');
             $table->string('name')
+                ->unique();
+            $table->string('abbreviation')
                 ->unique();
             $table->timestamps();
             $table->softDeletes();
@@ -30,6 +32,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categories');
+        Schema::drop('unit_of_measurements');
     }
 }

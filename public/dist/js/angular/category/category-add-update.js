@@ -3,7 +3,7 @@ app.controller('CategoryAddUpdateController', function($http, appSettings) {
 
 	vm.categoryOnSubmit = function() {
 		$http({
-			url: appSettings.BASE_URL + 'pharmacy/api/v1/tags',
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/categories',
 			method: 'POST',
 			data: $.param({
 				'name': vm.formTag.tagName

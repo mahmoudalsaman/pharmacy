@@ -7,3 +7,9 @@ Yung mga products po ay nakaayon din sa stocks. Kung walang stocks ang isang pro
 Ah sige kuya. Pero paexplain na rin po nung validation part... ??
 
 Tapos Kuya, about naman dun po sa order form ng customer. Dapat po, kapag nagchoose na siya ng mga produkto, diba pipindutin nya na po ang done para matapos na ang transaction? Kapag kinilick na niya po ang "Done," may magpa-pop up po na form na ididisplay yung mga produkto na pinili nila with the quantity and their subtotal amounts, tapos sa huli ay yung total amount ng bawat subtotal ng mga gamot. tapos dun na lang po yung pipili kung pickup or delivery. Kapag pickup po pinili, walang madadagdag na amount sa total amount, tapos yun na papasok sa transactions ni Admin. Pero kung delivery ang pipiliin, may dagdag na 20 pesos for delivery fee. Pero may special case rin po ang delivery fee: kung 1.00-500.00 pesos ang total amount na babayaran ni customer, ma-a-add yung 20 pesos na delivery fee sa total amount na babayaran ni customer. Pero kung  501.00 pesos onwards ang babayaran  ni customer all in all, wala nang delivery charge. Gets po?
+
+Kasi yung kapag magsesend ang admin ng transaction code sa customer through their contact number, yung transaction code ay kukunin dun sa number ng receipt na ibibigay ng pharmacy. May sinend po si Marjorie kahapon na receipt kay Felix. Yung number dun ay yun na lang ang transaction code.
+
+Ah kuya tapos dapat din po pala nakasulat din sa transactions yung verification code para tingnan na rin ng admin dun para may isa pang copy maliban sa receipt
+
+09293310136_IT77U

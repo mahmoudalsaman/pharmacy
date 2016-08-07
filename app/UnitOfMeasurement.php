@@ -5,13 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Tag extends Model
+class UnitOfMeasurement extends Model
 {
-    public $primaryKey = 'tag_id';
+	public $primaryKey = 'unit_of_measurement_id';
 
     protected $dates = array('deleted_at');
 
     protected $fillable = array(
-    	'name'
+    	'name',
+    	'abbreviation'
     );
 }
