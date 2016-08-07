@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-<div class="panel panel-primary box-body" style="margin-top:5%">
+<div class="panel panel-primary box-body" style="margin-top:5%" ng-controller="CategoryController as vmCategory">
   <div class="panel-body">
   		<center>
 			<h2>Category Maintenance</h2>
@@ -9,19 +9,7 @@
 			<form class="form-horizontal" role="form" >
 				<div class="form-group">		
 					<div class="table-responsive">
-						<table class="table table-bordered table-hover" id="category_table">
-							<thead>
-								<tr>
-									<th>Category ID</th>
-									<th>Category name</th>
-								</tr>
-							</thead>
-							<tbody>							
-									<tr>
-										<td>A</td>
-										<td>E</td>									
-									</tr>
-							</tbody>
+						<table datatable="" dt-options="vmCategory.dtOptions" dt-columns="vmCategory.dtColumns" dt-instance="vmCategory.dtInstance" class="table table-bordered table-hover" id="category_table">
 						</table>
 					</div>	
 				</div>
@@ -34,47 +22,42 @@
 				<br>
 			</form>
 	</div>
+
+	<!-- MODAL -->
+	<div class="modal modal-default" id="category_modal" role="dialog" style="margin-top:10%" ng-controller="CategoryAddUpdateController as vmCategoryAddUpdate">
+	    <div class="col-sm-5 col-sm-offset-4">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <center>
+	                     <h3><i class="ace-icon fa fa-users"></i>Category Information</h3>
+	                </center>
+	            </div>           
+	            <div class="modal-body">
+	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmCategoryAddUpdate.categoryOnSubmit()">
+	        		<div class="box-body">        		
+					  	<div class="col-md-10">
+						    <div class="form-group">
+				                <label>Category Name</label>
+				                <input type="text" class="form-control" id="tag_name" placeholder="Category Name" ng-model="vmCategoryAddUpdate.formTag.tagName">
+				              </div>			
+						</div>
+
+						<div class="col-sm-12 modal-footer">
+							<center>
+								<button type="submit" class="btn btn-primary column-md-4 span4 text-right">Submit</button>
+								<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+							</center>
+						</div>
+					</div>
+				</form>  
+				</div>	
+	            
+	        </div>
+	    </div>
+	</div>
+	<!-- MODAL END -->
 </div>	
 
-<!-- MODAL -->
-
-<div class="modal modal-default" id="category_modal" role="dialog" style="margin-top:10%">
-    <div class="col-sm-5 col-sm-offset-4">
-        <div class="modal-content">
-            <div class="modal-header">
-                <center>
-                     <h3><i class="ace-icon fa fa-users"></i>Category Information</h3>
-                </center>
-            </div>           
-            <div class="modal-body">
-            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "" id="">
-        		<div class="box-body">        		
-				  	<div class="col-md-10">
-					    <div class="form-group">
-			                <label>Category Name</label>
-			                <select class="form-control select2" multiple="multiple" id="category_name" data-placeholder="Category name" style="width: 100%;">
-			                  <option>1</option>
-			                  <option>2</option>
-			                  <option>3</option>
-			                  <option>4</option>                 
-			                </select>
-			              </div>			
-					</div>
-
-					<div class="col-sm-12 modal-footer">
-						<center>
-							<button type="submit" class="btn btn-primary column-md-4 span4 text-right">Submit</button>
-							<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-						</center>
-					</div>
-				</div>
-			</form>  
-			</div>	
-            
-        </div>
-    </div>
-</div>
-<!-- MODAL END -->
-
-
+<script type="text/javascript" src="{!! asset('dist/js/angular/category/category.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('dist/js/angular/category/category-add-update.js') !!}"></script>
 @stop

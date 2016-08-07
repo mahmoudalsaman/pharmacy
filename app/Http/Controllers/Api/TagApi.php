@@ -19,7 +19,7 @@ class TagApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_tags' => $this->queryTag(null);
+            'active_tags' => $this->queryTag(null)
         ));
     }
 
@@ -125,7 +125,7 @@ class TagApi extends Controller
             $tagQueryResult = $tagQuery->where('tag_id', '=', $tagQuery)
                 ->first();
         } else {
-            $tagQueryResult = $tagQuery->get()l
+            $tagQueryResult = $tagQuery->get();
         }
 
         return $tagQueryResult;
