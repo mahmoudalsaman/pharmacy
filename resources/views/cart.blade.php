@@ -62,7 +62,8 @@
 						<table class="table table-bordered table-hover" id="">
 							<thead>
 								<tr>
-									<th>Product ID</th>
+									<th class="hidden">Product ID</th>
+									<th></th>
 									<th>Product Name</th>
 									<th>Product Description</th>
 									<th>Product Price</th>
@@ -72,7 +73,12 @@
 							</thead>
 							<tbody>							
 									<tr>
-										<td>A</td>
+										<td class="hidden">A</td>
+										<td>
+											<div class="checkbox">
+											  <center><label><input type="checkbox" value=""></label></center>
+											</div>
+										</td>
 										<td>E</td>
 										<td>I</td>
 										<td>A</td>

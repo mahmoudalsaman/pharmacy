@@ -14,6 +14,7 @@
 							<thead>
 								<tr>
 									<th class="hidden"><center>Transaction ID</center></th>
+									<th></th>
 									<th><center>Customer Name</center></th>
 									<th><center>Order Date</center></th>
 									<th><center>Delivery Date</center></th>
@@ -27,6 +28,11 @@
 							<tbody>							
 									<tr>
 										<td hidden="">TRAN0001</td>
+										<td>
+											<div class="checkbox">
+											  <label><input type="checkbox" value=""></label>
+											</div>
+										</td>
 										<td>John Felix Lim</td>
 										<td>08-08-2016</td>
 										<td>08-08-2016</td>
