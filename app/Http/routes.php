@@ -53,6 +53,10 @@ Route::get('login', function () {
     return view('login');
 });
 
+Route::get('order', function () {
+    return view('order');
+});
+
 Route::group(['prefix' => 'pharmacy/api'], function() {
 	// Api version 1
 	Route::group(['prefix' => 'v1'], function() {

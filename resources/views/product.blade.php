@@ -44,6 +44,7 @@
 			</form>
 	</div>
 </div>	
+
 <!-- MODAL -->
 <div class="modal modal-default" id="product_modal" role="dialog" style="margin-top:10%">
     <div class="col-sm-7 col-sm-offset-3">
@@ -111,5 +112,8 @@
         </div>
     </div>
 </div>
+
+
+
 <!-- MODAL END -->
 @stop
