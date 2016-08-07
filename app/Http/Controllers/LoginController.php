@@ -20,6 +20,7 @@ class LoginController extends Controller
     	if(count($user) > 0) {
     		if(Hash::check($request->password, $user->password)) {
     			session()->put('user_id', $user->user_id);
+    			session()->put('user_type', $user->user_type);
     			session()->put('user_full_name', $user->first_name . ' ' . $user->last_name);
     			session()->put('user_branch_id', $user->branch_id_fk);
 

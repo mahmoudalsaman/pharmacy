@@ -123,51 +123,53 @@
       <ul class="sidebar-menu">
         <li class="header">TRANSACTION</li>
 
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-home"></i> <span>HOME</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="order"><i class="fa fa-fw fa-cart-plus"></i>Order</a></li>
-            <li><a href="cart"><i class="fa fa-fw fa-cart-arrow-down"></i>Cart</a></li>
-          </ul>
-        </li>
+        @if(session('user_type') == 2)
+          <li class="active treeview">
+            <a href="#">
+              <i class="fa fa-home"></i> <span>HOME</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="active"><a href="order"><i class="fa fa-fw fa-cart-plus"></i>Order</a></li>
+              <li><a href="cart"><i class="fa fa-fw fa-cart-arrow-down"></i>Cart</a></li>
+            </ul>
+          </li>
 
+        @elseif(session('user_type') == 1)
+          <li class="active treeview">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> <span>TRANSACTION</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="active"><a href="transaction"><i class="fa fa-circle-o"></i>Transactions</a></li>            
+            </ul>
+          </li>      
 
-
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>TRANSACTION</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="transaction"><i class="fa fa-circle-o"></i>Transactions</a></li>            
-          </ul>
-        </li>      
-
-        <li class="header">MAINTENANCE</li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-cogs"></i> <span>MAINTENANCE</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="branch"><i class="fa fa-circle-o"></i>Branch</a></li>
-            <li><a href="employee"><i class="fa fa-circle-o"></i>Employee</a></li>
-            <li><a href="customer"><i class="fa fa-circle-o"></i>Customer</a></li>            
-            <li><a href="category"><i class="fa fa-circle-o"></i>Category</a></li>
-            <li><a href="brand"><i class="fa fa-circle-o"></i>Brand</a></li>
-            <li><a href="uom"><i class="fa fa-circle-o"></i>Unit Of Measurment</a></li>
-            <li><a href="product"><i class="fa fa-circle-o"></i>Products</a></li>
-          </ul>
-        </li>
+        
+          <li class="header">MAINTENANCE</li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cogs"></i> <span>MAINTENANCE</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="active"><a href="branch"><i class="fa fa-circle-o"></i>Branch</a></li>
+              <li><a href="employee"><i class="fa fa-circle-o"></i>Employee</a></li>
+              <li><a href="customer"><i class="fa fa-circle-o"></i>Customer</a></li>            
+              <li><a href="category"><i class="fa fa-circle-o"></i>Category</a></li>
+              <li><a href="brand"><i class="fa fa-circle-o"></i>Brand</a></li>
+              <li><a href="uom"><i class="fa fa-circle-o"></i>Unit Of Measurment</a></li>
+              <li><a href="product"><i class="fa fa-circle-o"></i>Products</a></li>
+            </ul>
+          </li>
+        @endif
 
       </ul>
     </section>
