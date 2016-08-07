@@ -8,6 +8,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -34,6 +35,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/css/angular-datatables.min.css">
 
+<link rel="stylesheet" href="bootstrap/css/ihover.css">
   <!-- jQuery 2.2.3 -->
   <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
   
@@ -120,6 +122,22 @@
     <section class="sidebar">      
       <ul class="sidebar-menu">
         <li class="header">TRANSACTION</li>
+
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-home"></i> <span>HOME</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="order"><i class="fa fa-fw fa-cart-plus"></i>Order</a></li>
+            <li><a href="#"><i class="fa fa-fw fa-cart-arrow-down"></i>Cart</a></li>
+          </ul>
+        </li>
+
+
+
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>TRANSACTION</span>
@@ -128,15 +146,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="transaction"><i class="fa fa-circle-o"></i>Transactions</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> WALA PA</a></li>
+            <li class="active"><a href="transaction"><i class="fa fa-circle-o"></i>Transactions</a></li>            
           </ul>
         </li>      
 
         <li class="header">MAINTENANCE</li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>MAINTENANCE</span>
+            <i class="fa fa-cogs"></i> <span>MAINTENANCE</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -160,8 +177,12 @@
   <!-- Content Wrapper. Contains page D2AKO -->
   <div class="content-wrapper">
 <!-- contenct d2 -->
-
-    @yield('content')
+  <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        @yield('content')
+      </div>
+    </section>
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer col-md-12">   
