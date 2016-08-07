@@ -53,11 +53,56 @@
       </div>
     </form>
     <center>
-      <a href="#">Forgot Password</a><br>
-      <a href="#" class="text-center">Register</a>
+      <a href="#" data-toggle="modal" data-target="#forgot_pass_modal">Forgot Password</a><br>
+      <a href="register" class="text-center">Register</a>
     </center>
   </div>
 </div>
+
+
+<div class="modal modal-default" id="forgot_pass_modal" role="dialog" style="margin-top:10%; background:rgba(0, 0, 0, 0)">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="modal-content">
+            <div class="modal-header">
+                <center>
+                     <h3><i class="ace-icon fa fa-users"></i>Forgot Password</h3>
+                </center>
+            </div>           
+            <div class="modal-body">
+            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "" id="">
+            <div class="box-body">
+          <div class="form-group">    
+         
+        </div>  
+
+        <div class="form-group col-md-12">
+          <label>Mobile Number</label>
+          <input type="text" class="form-control" name="" placeholder="Mobile Number">
+        </div>
+
+
+        <div class="col-sm-12 modal-footer">
+            <center>              
+              <button type="submit" class="btn btn-primary" data-dismiss="modal">Send</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </center>
+          </div>
+        </div>  
+            </form>  
+            </div>                      
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 <script src="../../plugins/iCheck/icheck.min.js"></script>
