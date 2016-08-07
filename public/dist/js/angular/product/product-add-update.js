@@ -14,6 +14,7 @@ app.controller('ProductAddUpdateController', function($http, appSettings, $windo
 				'category_id_fk': vm.formProduct.category.category_id,
 				'amount': vm.formProduct.dosageAmount,
 				'unit_of_measurement_id_fk': vm.formProduct.uom.unit_of_measurement_id,
+				'quantity': vm.formProduct.quantity
 			}),
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'

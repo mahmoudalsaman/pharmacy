@@ -33,6 +33,9 @@ class CreateProductInventoriesTable extends Migration
             $table->foreign('user_id_fk')
                 ->references('user_id')
                 ->on('users');
+            $table->foreign('product_id_fk')
+                ->references('product_id')
+                ->on('products');
         });
     }
 

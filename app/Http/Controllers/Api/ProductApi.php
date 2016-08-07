@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Product;
+use App\ProductInventory;
 use App\ProductPriceHistory;
 use App\ProductTag;
 
@@ -68,6 +69,14 @@ class ProductApi extends Controller
                 'product_id_fk' => $product->product_id,
                 'price'         => $request->price,
                 'created_at'    => Carbon::now()
+            ));
+
+            ProductInventory::create(array(
+                'branch_id_fk'      => 1,
+                'user_id_fk'        => 1,
+                'product_id_fk'     => $product->product_id,
+                'previous_value'    => 0,
+                'current_value'     => $request->quantity
             ));
 
             DB::commit();
@@ -135,6 +144,8 @@ class ProductApi extends Controller
                 'price'         => $request->price
             ));
 
+
+
             DB::commit();
 
             return response()->json(array(
@@ -169,6 +180,7 @@ class ProductApi extends Controller
     public function queryProduct($id)
     {
         $productQuery = Product::join('brands', 'products.brand_id_fk', '=', 'brands.brand_id')
+        ->join('product_inventories', 'product_inventories.product_id_fk', '=', 'products.product_id')
         ->join('categories', 'products.category_id_fk', '=', 'categories.category_id')
         ->join('unit_of_measurements', 'products.unit_of_measurement_id_fk', '=', 'unit_of_measurements.unit_of_measurement_id')
         ->select(
@@ -179,6 +191,8 @@ class ProductApi extends Controller
             'products.name as product_name',
             'unit_of_measurements.abbreviation',
             'products.amount',
+            'product_inventories.previous_value',
+            'product_inventories.current_value',
             'products.description',
             'products.image_path',
             'products.price',

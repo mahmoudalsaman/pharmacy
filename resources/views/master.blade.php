@@ -166,7 +166,6 @@
             <li><a href="brand"><i class="fa fa-circle-o"></i>Brand</a></li>
             <li><a href="uom"><i class="fa fa-circle-o"></i>Unit Of Measurment</a></li>
             <li><a href="product"><i class="fa fa-circle-o"></i>Products</a></li>
-            <li><a href="inventory"><i class="fa fa-circle-o"></i>Product Stocks</a></li>
           </ul>
         </li>
 
