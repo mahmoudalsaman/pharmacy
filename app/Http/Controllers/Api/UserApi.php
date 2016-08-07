@@ -21,7 +21,7 @@ class UserApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_users' => $this->queryUsers(null);
+            'active_users' => $this->queryUser(null)
         ));
     }
 
@@ -79,7 +79,7 @@ class UserApi extends Controller
     public function edit($id)
     {
         return response()->json(array(
-            'user_details' => $this->queryUser($id);
+            'user_details' => $this->queryUser($id)
         ));
     }
 
@@ -144,10 +144,10 @@ class UserApi extends Controller
 
         if($id) {
             $userQueryResult = $userQuery->where('users.user_id', '=', $id)
-                ->where('users.user_type', '=', Input::get('userType'))
+                ->where('users.user_type', '=', (int)Input::get('userType'))
                 ->first();
         } else {
-            $userQueryResult = $userQuery->where('users.user_type', '=', Input::get('userType'))
+            $userQueryResult = $userQuery->where('users.user_type', '=', (int)Input::get('userType'))
                 ->get();
         }
 

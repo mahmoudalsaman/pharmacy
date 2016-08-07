@@ -1,0 +1,9 @@
+Tapos Kuya, may gusto rin po ang panel sa gagawin sa mga produkto. Kapag po prescription medicine ang isang gamot, hindi siya pwedeng for delivery. Dapat for pick-up lang siya, kasi makiclaim lang yung prescription medicine ay kapag pinakita sa pharmacist ng pharmacy yung prescription ng doctor. Tapos po sa pagkadisplay ng isang prescription medicine, dpaat po may nakalagay na "Prescription Required" or something like that po.
+kailangan po sa login, yung username at password minimum of 8 characters and maximum of 16 characters.
+Otherwise, kung hindi naachieve yung minimum or nagexceed sa maximum, error yun
+tapos kapag sa signup ng customer or sa pag input ng products, kapag may field na hindi nainputan ang customer, mag error or magdidisplay ng "please fill out this field" ormga ganun po
+
+Yung mga products po ay nakaayon din sa stocks. Kung walang stocks ang isang produkto, hindi siya pwedeng bilhin at madidisplayan ng out of stocks
+Ah sige kuya. Pero paexplain na rin po nung validation part... ??
+
+Tapos Kuya, about naman dun po sa order form ng customer. Dapat po, kapag nagchoose na siya ng mga produkto, diba pipindutin nya na po ang done para matapos na ang transaction? Kapag kinilick na niya po ang "Done," may magpa-pop up po na form na ididisplay yung mga produkto na pinili nila with the quantity and their subtotal amounts, tapos sa huli ay yung total amount ng bawat subtotal ng mga gamot. tapos dun na lang po yung pipili kung pickup or delivery. Kapag pickup po pinili, walang madadagdag na amount sa total amount, tapos yun na papasok sa transactions ni Admin. Pero kung delivery ang pipiliin, may dagdag na 20 pesos for delivery fee. Pero may special case rin po ang delivery fee: kung 1.00-500.00 pesos ang total amount na babayaran ni customer, ma-a-add yung 20 pesos na delivery fee sa total amount na babayaran ni customer. Pero kung  501.00 pesos onwards ang babayaran  ni customer all in all, wala nang delivery charge. Gets po?
