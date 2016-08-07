@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerSalesInvoicesTable extends Migration
+class CreateCustomerCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,20 @@ class CreateCustomerSalesInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_sales_invoices', function(Blueprint $table) {
+        Schema::create('customer_carts', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->increments('customer_sales_invoice_id');
+            $table->increments('customer_cart_id');
             $table->integer('user_id_fk')
                 ->unsigned();
-            $table->text('remarks')
-                ->nullable();
-            $table->datetime('ordered_at');
+            $table->timestamps();
 
             $table->foreign('user_id_fk')
                 ->references('user_id')
-                ->on('users');
-        }); 
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+        });
     }
 
     /**
@@ -35,6 +35,6 @@ class CreateCustomerSalesInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('customer_sales_invoices');
+        Schema::drop('customer_carts');
     }
 }

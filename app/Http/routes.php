@@ -100,5 +100,7 @@ Route::group(['prefix' => 'pharmacy/api'], function() {
 		Route::resource('brands', 'Api\\BrandApi');
 		Route::resource('products', 'Api\\ProductApi');
 		Route::resource('uoms', 'Api\\UnitOfMeasurementApi');
+		Route::resource('carts', 'Api\\CartApi');
+		Route::resource('sales-invoices', 'Api\\SalesInvoiceApi');
 	});
 });

@@ -72,8 +72,8 @@ class ProductApi extends Controller
             ));
 
             ProductInventory::create(array(
-                'branch_id_fk'      => 1,
-                'user_id_fk'        => 1,
+                'branch_id_fk'      => session('user_branch_id'),
+                'user_id_fk'        => session('user_id'),
                 'product_id_fk'     => $product->product_id,
                 'previous_value'    => 0,
                 'current_value'     => $request->quantity

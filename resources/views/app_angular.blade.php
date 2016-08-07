@@ -4,4 +4,24 @@
 			'BASE_URL'	: 'http://localhost:8000/',	
 			'CSRF_TOKEN': '{!! csrf_token() !!}'
 		});
+
+	app.service('tableService', function() {
+		var tableInstance;
+
+		this.setTableInstance = function(tableInstance) {
+			this.tableInstance = tableInstance;
+		};
+
+		this.getTableInstance = function() {
+			return this.tableInstance;
+		}
+
+		this.getSelectedRowCount = function(tableInstance) {
+			return tableInstance.rows({selected: true}).count();
+		};
+
+		this.getSelectedRowData = function(tableInstance) {
+			return tableInstance.rows({selected: true}).data();
+		};
+	});
 </script>

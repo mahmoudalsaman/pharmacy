@@ -10,30 +10,25 @@
 }
 </style>
 
-<div class="col-md-12">
+<div ng-controller="ProductOrderController as vmProductOrder">
+<div class="col-md-12" >
 	<div class="form-group col-md-3">
 	<label>Search</label>
 		<div class="input-group">
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" ng-model="vmProductOrder.productSearch">
 			<span class="input-group-addon"><i class="fa fa-search"></i></span>
 		</div>
 	</div>
 
 	<div class="form-group col-md-3">
 		<label>Category</label>
-		<select class="form-control" style="width: 100%;">
-		  <option selected="selected">All</option>
-		  <option>Pampabata</option>
-		  <option>Pampatanda</option>
+		<select class="form-control" style="width: 100%;" ng-model="vmProductOrder.category" ng-options="category as category.name for category in vmProductOrder.categories track by category.category_id">  
 		</select>
 	</div>
 
 	<div class="form-group col-md-3">
 		<label>Brand</label>
-		<select class="form-control" style="width: 100%;">
-		  <option selected="selected">All</option>
-		  <option>Toyo</option>
-		  <option>Suka</option>
+		<select class="form-control" style="width: 100%;" ng-model="vmProductOrder.brand" ng-options="brand as brand.name for brand in vmProductOrder.brands track by brand.brand_id">
 		</select>
 	</div>
 </div>
@@ -41,99 +36,25 @@
 
 <div class="col-md-12">
 <!-- START -->
- <div class="col-md-4" style="margin-top:3%">
+ <div class="col-md-4" style="margin-top:3%" ng-repeat="product in vmProductOrder.products | filter:vmProductOrder.productSearch">
     <!-- colored -->
     <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
         <div class="img"><img src="images/liza.jpg" alt="img"></div>
-        	<p><b>Product Name: {asds}</b></p>
-        	<p style="">Description: {asdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdad}</p>                          	
-        	<p>Price: {3.3}</p>
-        	<p>Quantity Ordered: </p>
-        	<p>Total Amount: </p>
-		<center>
-			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">BUY</button>
-         </center>
-    <!-- end colored -->
-    </a>
-  </div>  
-</div>
-<!-- END -->
-
-<!-- START -->
- <div class="col-md-4" style="margin-top:3%">
-    <!-- colored -->
-    <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
-        <div class="img"><img src="images/liza.jpg" alt="img"></div>
-        	<p><b>Product Name: {asds}</b></p>
-        	<p style="">Description: {asdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdad}</p>                          	
-        	<p>Price: {3.3}</p>
-        	<p>Quantity Ordered: </p>
-        	<p>Total Amount: </p>
-		<center>
-			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">BUY</button>
-         </center>
-    <!-- end colored -->
-    </a>
-  </div>  
-</div>
-<!-- END -->
-
-<!-- START -->
- <div class="col-md-4" style="margin-top:3%">
-    <!-- colored -->
-    <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
-        <div class="img"><img src="images/liza.jpg" alt="img"></div>
-        	<p><b>Product Name: {asds}</b></p>
-        	<p style="">Description: {asdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdad}</p>                          	
-        	<p>Price: {3.3}</p>
-        	<p>Quantity Ordered: </p>
-        	<p>Total Amount: </p>
-		<center>
-			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">BUY</button>
-         </center>
-    <!-- end colored -->
-    </a>
-  </div>  
-</div>
-<!-- END -->
-
-<!-- START -->
- <div class="col-md-4" style="margin-top:3%">
-    <!-- colored -->
-    <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
-        <div class="img"><img src="images/liza.jpg" alt="img"></div>
-        	<p><b>Product Name: {asds}</b></p>
-        	<p style="">Description: {asdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdadasdasdad}</p>                          	
-        	<p>Price: {3.3}</p>
-        	<p>Quantity Ordered: </p>
-        	<p>Total Amount: </p>
-		<center>
-			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">BUY</button>
-         </center>
-    <!-- end colored -->
-    </a>
-  </div>  
+        	<p><b>Product Name: <span ng-bind="product.product_name"></span></b></p>
+        	<p style="">Description: <span ng-bind="product.description"></span></p>                          	
+        	<p>Price: <span ng-bind="vmProductOrder.formatProductPrice(product.price)"></span></p>
+        	<p>Stock: <span ng-bind="product.current_value"></span></p>
+  		<center>
+  			<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" ng-click="vmProductOrder.buyOnClick(product.product_id, product.price, product.current_value)">BUY</button>
+           </center>
+      <!-- end colored -->
+      </a>
+    </div>  
 </div>
 <!-- END -->
 
 
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -148,17 +69,17 @@
                 </center>
             </div>           
             <div class="modal-body">
-            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "" id="">
+            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmProductOrder.productOrderOnSubmit()">
         		<div class="box-body">        		
 				  	<div class="col-md-10">
 					    <div class="form-group">
 					    	<label>Quantity:</label>
-			               	<input type="number" class="form-control" name="" placeholder="Quantity">
+			               	<input type="number" class="form-control" name="" placeholder="Quantity" ng-model="vmProductOrder.quantity" ng-change="vmProductOrder.quantityOnChange()">
 		              	</div>
 
 		              	<div class="form-group">
 					      <label>Total Amount*</label>
-					      <input type="text" disabled="" class="form-control" id="" placeholder="Total Amount">
+					      <input type="text" disabled="" class="form-control" id="" placeholder="Total Amount" ng-model="vmProductOrder.totalAmount">
 					    </div>			
 					</div>
 
@@ -176,8 +97,10 @@
     </div>
 </div>
 <!-- MODAL END -->
+</div>
 
-
+<script type="text/javascript" src="{!! asset('dist/js/angular/product-order/product-order.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('dist/js/dir-pagination.js') !!}"></script>
 @stop
 
 
