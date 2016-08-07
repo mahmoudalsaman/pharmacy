@@ -77,6 +77,14 @@ Route::get('order', function () {
     return view('order');
 });
 
+Route::get('cart', function () {
+    return view('cart');
+});
+
+Route::get('uom', function () {
+    return view('uom');
+});
+
 Route::group(['prefix' => 'pharmacy/api'], function() {
 	// Api version 1
 	Route::group(['prefix' => 'v1'], function() {

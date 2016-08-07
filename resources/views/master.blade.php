@@ -132,7 +132,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="order"><i class="fa fa-fw fa-cart-plus"></i>Order</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-cart-arrow-down"></i>Cart</a></li>
+            <li><a href="cart"><i class="fa fa-fw fa-cart-arrow-down"></i>Cart</a></li>
           </ul>
         </li>
 
@@ -164,6 +164,7 @@
             <li><a href="customer"><i class="fa fa-circle-o"></i>Customer</a></li>            
             <li><a href="category"><i class="fa fa-circle-o"></i>Category</a></li>
             <li><a href="brand"><i class="fa fa-circle-o"></i>Brand</a></li>
+            <li><a href="uom"><i class="fa fa-circle-o"></i>Unit Of Measurment</a></li>
             <li><a href="product"><i class="fa fa-circle-o"></i>Products</a></li>
             <li><a href="inventory"><i class="fa fa-circle-o"></i>Product Stocks</a></li>
           </ul>
