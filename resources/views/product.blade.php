@@ -13,15 +13,21 @@
 							<thead>
 								<tr>
 									<th>Product ID</th>
-									<th>Product name</th>
+									<th>Product Name</th>
+									<th>Product Price</th>
 									<th>Product Description</th>
+									<th>Brand</th>
+									<th>Category</th>
 								</tr>
 							</thead>
 							<tbody>							
 									<tr>
 										<td>A</td>
+										<td>A</td>
 										<td>E</td>
 										<td>I</td>										
+										<td>E</td>
+										<td>I</td>		
 									</tr>
 							</tbody>
 						</table>
@@ -40,7 +46,7 @@
 </div>	
 <!-- MODAL -->
 <div class="modal modal-default" id="product_modal" role="dialog" style="margin-top:10%">
-    <div class="col-sm-5 col-sm-offset-4">
+    <div class="col-sm-7 col-sm-offset-3">
         <div class="modal-content">
             <div class="modal-header">
                 <center>
@@ -50,7 +56,7 @@
             <div class="modal-body">
             <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "" id="">
         		<div class="box-body">        		
-				  	<div class="col-md-10">
+				  	<div class="col-md-5">
 					   <div class="form-group">
 					      <label>Product Name*</label>
 					      <input type="email" class="form-control" id="product_name" placeholder="Product Name">
@@ -66,11 +72,30 @@
 					      <label>Product Price *</label>
 					      <input type="text" class="form-control" id="product_price" placeholder="Product Price">
 					    </div>	
+					</div>
 
-					    <div class="form-group col-md-12">
+
+					<div class="col-md-5 col-md-offset-1">
+					    <div class="form-group col-md-12"" >
+			                <label>Brand</label>
+			                <select class="form-control select2" style="width: 100%;">
+			                  <option selected="selected">Heaven</option>
+			                  <option>Hell</option>
+			                </select>
+			            </div>
+
+			            <div class="form-group col-md-12"">
+			                <label>Category</label>
+			                <select class="form-control select2" style="width: 100%;">
+			                  <option selected="selected">Heaven</option>
+			                  <option>Hell</option>
+			                </select>
+			            </div>
+
+			            <div class="form-group col-md-12">
 				          <label for="exampleInputFile">Choose Image</label>
 				          <input type="file" id="exampleInputFile">        
-				        </div>	
+				        </div>
 					</div>
 
 					<div class="col-sm-12 modal-footer">

@@ -19,7 +19,6 @@
 									<th>Lastname</th>		
 									<th>Birthdate</th>
 									<th>Mobile Number</th>	
-									<th>Address</th>
 								</tr>
 							</thead>
 							<tbody>							
@@ -29,8 +28,7 @@
 										<td>I</td>
 										<td>O</td>
 										<td>U</td>
-										<td>U</td>
-										<td>U</td>
+										<td>U</td>									
 									</tr>
 							</tbody>
 						</table>
@@ -97,11 +95,6 @@
 					      <label>Mobile Number*</label>
 					      <input type="text" class="form-control" id="cust_mobile" placeholder="Mobile Number">
 					    </div>   
-
-					     <div class="form-group">
-					      <label>Address*</label>
-					      <input type="text" class="form-control" id="cust_address" placeholder="Address">
-					    </div>  					
 					</div>
 
 					<div class="col-sm-12 modal-footer">
