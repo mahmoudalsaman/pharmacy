@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Tag;
+use App\UnitOfMeasurement;
 
-class TagApi extends Controller
+class UnitOfMeasurementApi extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class TagApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_tags' => $this->queryTag(null)
+            'active_uoms' => $this->queryUom(null)
         ));
     }
 
@@ -41,12 +41,13 @@ class TagApi extends Controller
      */
     public function store(Request $request)
     {
-        Tag::create(array(
-            'name'  => $request->name
+        UnitOfMeasurement::create(array(
+            'name'          => $request->name,
+            'abbreviation'  => $request->abbreviation
         ));
-        
+
         return response()->json(array(
-            'message' => 'Tag successfully created!'  
+            'message'   => 'Unit of Measurement successfully created!'
         ));
     }
 
@@ -70,7 +71,7 @@ class TagApi extends Controller
     public function edit($id)
     {
         return response()->json(array(
-            'tag_details' => $this->queryTag($id)
+            'uom_details'   => $this->queryUom($id)
         ));
     }
 
@@ -83,14 +84,15 @@ class TagApi extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = $this->queryTag($id);
+        $uom = $this->queryUom($id);
 
-        $tag->name = $request->name;
+        $uom->name          = $request->name;
+        $uom->abbreviation  = $request->abbreviation;
 
-        $tag->save();
+        $uom->save();
 
         return response()->json(array(
-            'message' => 'Tag successfully updated!'
+            'message'   => 'Unit of Measurement successfully updated!'
         ));
     }
 
@@ -102,32 +104,33 @@ class TagApi extends Controller
      */
     public function destroy($id)
     {
-        $tag = $this->queryTag($id);
+        $uom = $this->queryUom($id);
 
-        $tag->delete();
+        $uom->delete();
 
         return response()->json(array(
-            'message' => 'Tag successfully deleted!'
+            'message'   => 'Unit of measurement successully deleted!'
         ));
     }
 
-    public function queryTag($id)
+    public function queryUom($id)
     {
-        $tagQuery = Tag::select(
-            'tag_id',
+        $uomQuery = UnitOfMeasurement::select(
+            'unit_of_measurement_id',
             'name',
+            'abbreviation',
             'created_at',
             'updated_at',
             'deleted_at'
         );
 
         if($id) {
-            $tagQueryResult = $tagQuery->where('tag_id', '=', $tagQuery)
+            $uomQueryResult = $uomQuery->where('unit_of_measurement_id', '=', $id)
                 ->first();
         } else {
-            $tagQueryResult = $tagQuery->get();
+            $uomQueryResult = $uomQuery->get();
         }
 
-        return $tagQueryResult;
+        return $uomQueryResult;
     }
 }

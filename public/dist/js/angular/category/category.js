@@ -9,7 +9,7 @@ app.controller('CategoryController', function($http, $q, DTOptionsBuilder, DTCol
 	.withPaginationType('full_numbers');
 
 	vm.dtColumns = [
-		DTColumnBuilder.newColumn('tag_id').withTitle('ID'),
+		DTColumnBuilder.newColumn('category_id').withTitle('ID'),
 		DTColumnBuilder.newColumn('name').withTitle('Name'),
 		DTColumnBuilder.newColumn('created_at').withTitle('Created At'),
 		DTColumnBuilder.newColumn('updated_at').withTitle('Updated At')
@@ -25,9 +25,9 @@ app.controller('CategoryController', function($http, $q, DTOptionsBuilder, DTCol
 	function getTags() {
 		var defer = $q.defer();
 
-		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/tags')
+		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/categories')
 			.then(function(response) {
-				defer.resolve(response.data.active_tags);
+				defer.resolve(response.data.active_categories);
 			}, function(error) {
 				alert('Error fetching tag data!');
 			});

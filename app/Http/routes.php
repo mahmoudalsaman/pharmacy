@@ -90,8 +90,9 @@ Route::group(['prefix' => 'pharmacy/api'], function() {
 	Route::group(['prefix' => 'v1'], function() {
 		Route::resource('branches', 'Api\\BranchApi');
 		Route::resource('users', 'Api\\UserApi');
-		Route::resource('tags', 'Api\\TagApi');
+		Route::resource('categories', 'Api\\CategoryApi');
 		Route::resource('brands', 'Api\\BrandApi');
 		Route::resource('products', 'Api\\ProductApi');
+		Route::resource('uoms', 'Api\\UnitOfMeasurementApi');
 	});
 });
