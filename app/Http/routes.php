@@ -34,7 +34,7 @@ Route::get('pdf', function() {
 });
 
 Route::get('/', function () {
-    return view('master');
+    return view('login');
 });
 
 Route::get('employee', function () {
@@ -66,6 +66,14 @@ Route::get('product', function () {
 Route::get('inventory', function () {
     return view('inventory');
 });
+
+Route::post('login', 'LoginController@doLogin');
+
+Route::get('register', function() {
+	return view('register');
+});
+
+Route::post('register', 'RegistrationController@doRegister');
 
 Route::get('transaction', function () {
     return view('transaction')
