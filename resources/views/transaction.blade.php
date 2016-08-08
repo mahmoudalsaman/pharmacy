@@ -8,6 +8,7 @@
 			<h2>List of Transactions</h2>
 		</center><br>	
 			<form class="form-horizontal" role="form" >
+				<input type="hidden" name="_token" value="{!! csrf_token() !!}" id="transaction_token">
 				<div class="form-group">		
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover" id="transaction_table">
@@ -127,14 +128,40 @@
 
 	function approveOnClick(id)
 	{
-		// $.ajax({
-	
-		// });
+		$.ajax({
+			url: '{!! url('pharmacy/api/v1/sales-approvals?isApproved=1&salesInvoiceId=') !!}' + id,
+			type: 'POST',
+			data: {
+				'_token': document.getElementById('transaction_token').value
+			},
+			success: function(data) {
+				alert('Success!');
+
+				window.location.href = '{!! url('transaction') !!}';
+			},
+			error: function(xhr) {
+				alert('An error occurred!');
+			}
+		});
 	}
 
 	function rejectOnClick(id)
 	{
-		alert(id);
+		$.ajax({
+			url: '{!! url('pharmacy/api/v1/sales-approvals?isApproved=0&salesInvoiceId=') !!}' + id,
+			type: 'POST',
+			data: {
+				'_token': document.getElementById('transaction_token').value
+			},
+			success: function(data) {
+				alert('Success!');
+
+				window.location.href = '{!! url('transaction') !!}';
+			},
+			error: function(xhr) {
+				alert('An error occurred!');
+			}
+		});
 	}
 </script>
 

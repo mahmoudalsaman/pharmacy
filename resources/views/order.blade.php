@@ -39,7 +39,7 @@
  <div class="col-md-4" style="margin-top:3%" ng-repeat="product in vmProductOrder.products | filter:vmProductOrder.productSearch">
     <!-- colored -->
     <div class="ih-item square colored effect4"  style="height:100%"><a href="#">
-        <div class="img"><img src="images/liza.jpg" alt="img"></div>
+        <div class="img"><img src="images/no-image.jpg" alt="img"></div>
         	<p><b>Product Name: <span ng-bind="product.product_name"></span></b></p>
         	<p style="">Description: <span ng-bind="product.description"></span></p>                          	
         	<p>Price: <span ng-bind="vmProductOrder.formatProductPrice(product.price)"></span></p>

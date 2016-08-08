@@ -92,7 +92,7 @@ class SalesInvoiceApi extends Controller
             DB::commit();
 
             $url = 'https://www.itexmo.com/php_api/api.php';
-            $itexmo = array('1' => session('user_phone_number'), '2' => 'Orders placed successfully! Please wait for admin to review your orders. Thank you!', '3' => '09293310136_IT77U');
+            $itexmo = array('1' => session('user_phone_number'), '2' => 'Orders placed successfully! Please wait for admin to review your orders. Thank you! (Order #:' . $salesInvoice->customer_sales_invoice_id . ')', '3' => '09293310136_IT77U');
             $param = array(
                 'http' => array(
                     'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
