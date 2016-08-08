@@ -6,7 +6,11 @@ app.controller('BranchController', function($http, $q, DTOptionsBuilder, DTColum
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
 		return getBranches();
 	})
-	.withPaginationType('full_numbers');
+	.withPaginationType('full_numbers')
+	.withSelect({
+        style:    'os',
+        selector: 'td:first-child'
+    });
 
 	vm.dtColumns = [
 		DTColumnBuilder.newColumn(null).withTitle('')

@@ -6,9 +6,20 @@ app.controller('BrandController', function($http, $q, DTOptionsBuilder, DTColumn
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
 		return getBrands();
 	})
-	.withPaginationType('full_numbers');
+	.withPaginationType('full_numbers')
+	.withSelect({
+        style:    'os',
+        selector: 'td:first-child'
+    });
 
 	vm.dtColumns = [
+		DTColumnBuilder.newColumn(null).withTitle('')
+	            .notSortable()
+	            .withClass('select-checkbox')
+	            // Need to define the mRender function, otherwise we get a [Object Object]
+	            .renderWith(function() {
+	            	return '';
+	        	}),
 		DTColumnBuilder.newColumn('brand_id').withTitle('ID'),
 		DTColumnBuilder.newColumn('brand_id').withTitle('Image'),
 		DTColumnBuilder.newColumn('name').withTitle('Name'),

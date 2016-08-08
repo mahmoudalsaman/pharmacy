@@ -1,6 +1,9 @@
 app.controller('CategoryController', function($http, $q, DTOptionsBuilder, DTColumnBuilder, appSettings) {
 	var vm = this;
 
+	vm.isOneRowSelected = false;
+	vm.isManyRowSelected = false;
+
 	vm.formCategory = {};
 
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {

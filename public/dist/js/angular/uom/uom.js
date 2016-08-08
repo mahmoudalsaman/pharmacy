@@ -6,9 +6,20 @@ app.controller('UomController', function($http, $q, DTOptionsBuilder, DTColumnBu
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
 		return getTags();
 	})
-	.withPaginationType('full_numbers');
+	.withPaginationType('full_numbers')
+	.withSelect({
+        style:    'os',
+        selector: 'td:first-child'
+    });
 
 	vm.dtColumns = [
+		DTColumnBuilder.newColumn(null).withTitle('')
+            .notSortable()
+            .withClass('select-checkbox')
+            // Need to define the mRender function, otherwise we get a [Object Object]
+            .renderWith(function() {
+            	return '';
+        	}),
 		DTColumnBuilder.newColumn('unit_of_measurement_id').withTitle('ID'),
 		DTColumnBuilder.newColumn('name').withTitle('Name'),
 		DTColumnBuilder.newColumn('abbreviation').withTitle('Unit of Measurement'),

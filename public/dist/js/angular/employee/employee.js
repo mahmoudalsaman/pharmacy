@@ -6,9 +6,20 @@ app.controller('EmployeeController', function($http, $q, DTOptionsBuilder, DTCol
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
 		return getEmployees();
 	})
-	.withPaginationType('full_numbers');
+	.withPaginationType('full_numbers')
+	.withSelect({
+        style:    'os',
+        selector: 'td:first-child'
+    });
 
 	vm.dtColumns = [
+		DTColumnBuilder.newColumn(null).withTitle('')
+            .notSortable()
+            .withClass('select-checkbox')
+            // Need to define the mRender function, otherwise we get a [Object Object]
+            .renderWith(function() {
+            	return '';
+        	}),
 		DTColumnBuilder.newColumn('user_id').withTitle('ID'),
 		DTColumnBuilder.newColumn('user_id').withTitle('Image'),
 		DTColumnBuilder.newColumn('first_name').withTitle('First Name'),
