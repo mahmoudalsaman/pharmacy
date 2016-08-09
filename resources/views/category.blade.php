@@ -15,8 +15,7 @@
 				</div>
 				<center>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#category_modal">Add Category</button>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
-					data-toggle="modal" data-target="#category_modal">Edit Category</button>
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center" ng-click="vmCategory.showCategoryDataOnClick()">Edit Category</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Category</button>					
 				</center>
 				<br>
@@ -24,7 +23,7 @@
 	</div>
 
 	<!-- MODAL -->
-	<div class="modal modal-default" id="category_modal" role="dialog" style="margin-top:10%" ng-controller="CategoryAddUpdateController as vmCategoryAddUpdate">
+	<div class="modal modal-default" id="category_modal" role="dialog" style="margin-top:10%">
 	    <div class="col-sm-5 col-sm-offset-4">
 	        <div class="modal-content">
 	            <div class="modal-header">
@@ -33,12 +32,12 @@
 	                </center>
 	            </div>           
 	            <div class="modal-body">
-	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmCategoryAddUpdate.categoryOnSubmit()">
+	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmCategory.categoryOnSubmit(vmCategory.isAdd)">
 	        		<div class="box-body">        		
 					  	<div class="col-md-10">
 						    <div class="form-group">
 				                <label>Category Name</label>
-				                <input type="text" class="form-control" id="tag_name" placeholder="Category Name" ng-model="vmCategoryAddUpdate.formTag.tagName">
+				                <input type="text" class="form-control" id="tag_name" placeholder="Category Name" ng-model="vmCategory.formCategory.categoryName">
 				              </div>			
 						</div>
 

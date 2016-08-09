@@ -122,7 +122,7 @@ class CategoryApi extends Controller
         );
 
         if($id) {
-            $tagQueryResult = $tagQuery->where('category_id', '=', $tagQuery)
+            $tagQueryResult = $tagQuery->where('category_id', '=', $id)
                 ->first();
         } else {
             $tagQueryResult = $tagQuery->get();

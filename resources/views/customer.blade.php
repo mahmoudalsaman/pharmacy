@@ -19,7 +19,7 @@
 				<center>
 					<button id=""  type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#customer_modal">Add Customer</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
-					data-toggle="modal" data-target="#customer_modal">Edit Customer</button>
+					ng-click="vmCustomer.showCustomerDataOnClick()">Edit Customer</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Customer</button>					
 				</center>
 				<br>
@@ -27,7 +27,7 @@
 	</div>
 
 	<!-- MODAL -->
-	<div class="modal modal-default" id="customer_modal" role="dialog" style="margin-top:10%" ng-controller="CustomerAddUpdateController as vmCustomerAddUpdate">
+	<div class="modal modal-default" id="customer_modal" role="dialog" style="margin-top:10%">
 	    <div class="col-sm-7 col-sm-offset-3">
 	        <div class="modal-content">
 	            <div class="modal-header">
@@ -36,23 +36,23 @@
 	                </center>
 	            </div>           
 	            <div class="modal-body">
-	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmCustomerAddUpdate.customerOnSubmit()">
+	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmCustomer.customerOnSubmit(vmCustomer.isAdd)">
 
 	        		<div class="box-body">
 					  	<div class="col-md-5">
 						    <div class="form-group">
 						      <label>Firstname *</label>
-						      <input type="text" class="form-control" id="cust_fname" placeholder="Firstname" ng-model="vmCustomerAddUpdate.formCustomer.firstName">
+						      <input type="text" class="form-control" id="cust_fname" placeholder="Firstname" ng-model="vmCustomer.formCustomer.firstName">
 						    </div>
 
 						    <div class="form-group">
 						      <label>Middlename</label>
-						      <input type="text" class="form-control" id="cust_mname" placeholder="Middlename" ng-model="vmCustomerAddUpdate.formCustomer.middleName">
+						      <input type="text" class="form-control" id="cust_mname" placeholder="Middlename" ng-model="vmCustomer.formCustomer.middleName">
 						    </div>
 
 						    <div class="form-group">
 						      <label>Lastname*</label>
-						      <input type="text" class="form-control" id="cust_lname" placeholder="Lastname" ng-model="vmCustomerAddUpdate.formCustomer.lastName">
+						      <input type="text" class="form-control" id="cust_lname" placeholder="Lastname" ng-model="vmCustomer.formCustomer.lastName">
 						    </div>   
 						</div>
 
@@ -63,13 +63,13 @@
 						          <div class="input-group-addon">
 						            <i class="fa fa-calendar"></i>
 						          </div>
-						          <input type="text" class="form-control pull-right" id="datepicker" ng-model="vmCustomerAddUpdate.formCustomer.birthDate">
+						          <input type="text" class="form-control pull-right" id="datepicker" ng-model="vmCustomer.formCustomer.birthDate">
 						        </div>                
 					      	</div>
 						
 							<div class="form-group">
 						      <label>Mobile Number*</label>
-						      <input type="text" class="form-control" id="cust_mobile" placeholder="Mobile Number" ng-model="vmCustomerAddUpdate.formCustomer.phoneNumber">
+						      <input type="text" class="form-control" id="cust_mobile" placeholder="Mobile Number" ng-model="vmCustomer.formCustomer.phoneNumber">
 						    </div>   
 						</div>
 

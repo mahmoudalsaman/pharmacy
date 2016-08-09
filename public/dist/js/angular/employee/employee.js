@@ -1,6 +1,7 @@
-app.controller('EmployeeController', function($http, $q, DTOptionsBuilder, DTColumnBuilder, appSettings, $window) {
+app.controller('EmployeeController', function($http, $q, DTOptionsBuilder, DTColumnBuilder, appSettings, $window, tableService) {
 	var vm = this;
 
+	vm.isAdd = true;
 	vm.formEmployee = {};
 
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
@@ -31,8 +32,16 @@ app.controller('EmployeeController', function($http, $q, DTOptionsBuilder, DTCol
 		DTColumnBuilder.newColumn('updated_at').withTitle('Updated At')
 	];
 
+	vm.dtOptions.drawCallback = function() {
+    	var table = this.DataTable();
+
+    	tableService.setTableInstance(table);
+    };
+
 	$('#employee_modal').on('hidden.bs.modal', function() {
 		vm.dtInstance.changeData(vm.newPromise);
+
+		vm.isAdd = true;
 	});
 
 	vm.newPromise = getEmployees;
@@ -58,5 +67,82 @@ app.controller('EmployeeController', function($http, $q, DTOptionsBuilder, DTCol
 		}, function(response) {
 			alert(response.data.message);
 		});
+	};
+
+	vm.showEmployeeDataOnClick = function() {
+		vm.isAdd = false;
+
+		var employeeId = tableService.getTableInstance().row({selected: true}).data().user_id;
+
+		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/users/' + employeeId + '/edit?userType=1')
+			.then(function(response) {
+				console.log(response.data.user_details);
+				vm.formEmployee.firstName = response.data.user_details.first_name;
+				vm.formEmployee.middleName = response.data.user_details.middle_name;
+				vm.formEmployee.lastName = response.data.user_details.last_name;
+				vm.formEmployee.branch = response.data.user_details.name;
+				vm.formEmployee.birthDate = response.data.user_details.date_of_birth;
+				vm.formEmployee.phoneNumber = response.data.user_details.cell_number;
+
+				$('#employee_modal').modal('show');
+			}, function(error) {
+				alert("Error fetching employee data");
+			});
+	}
+
+	vm.employeeOnSubmit = function(isAdd) {
+		if(isAdd) {
+			$http({
+				url: appSettings.BASE_URL + 'pharmacy/api/v1/users?userType=1',
+				method: 'POST',
+				data: $.param({
+					'branch_id_fk': vm.formEmployee.branch.branch_id,
+					'user_type': 1,
+					'first_name': vm.formEmployee.firstName,
+					'middle_name': vm.formEmployee.middleName,
+					'last_name': vm.formEmployee.lastName,
+					'date_of_birth': vm.formEmployee.birthDate,
+					'cell_number': vm.formEmployee.phoneNumber,
+					'password': 'employee12345'
+				}),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				}
+			}).then(function(response) {
+				$('#employee_modal').modal('hide');
+				vm.formEmployee = null;
+
+				alert(response.data.message);
+			}, function(response) {
+				alert(response.data.message);
+			});
+		} else {
+			var employeeId = tableService.getTableInstance().row({selected: true}).data().user_id;
+
+			$http({
+				url: appSettings.BASE_URL + 'pharmacy/api/v1/users/' + employeeId + '?userType=1',
+				method: 'PUT',
+				data: $.param({
+					'branch_id_fk': vm.formEmployee.branch.branch_id,
+					'user_type': 1,
+					'first_name': vm.formEmployee.firstName,
+					'middle_name': vm.formEmployee.middleName,
+					'last_name': vm.formEmployee.lastName,
+					'date_of_birth': vm.formEmployee.birthDate,
+					'cell_number': vm.formEmployee.phoneNumber,
+					'password': 'employee12345'
+				}),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				}
+			}).then(function(response) {
+				$('#employee_modal').modal('hide');
+				vm.formEmployee = null;
+
+				alert(response.data.message);
+			}, function(response) {
+				alert(response.data.message);
+			});
+		}
 	};
 });

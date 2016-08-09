@@ -18,8 +18,7 @@
 				
 				<center>
 					<button id=""  type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#employee_modal">Add Employee</button>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
-					data-toggle="modal" data-target="#employee_modal">Edit Employee</button>
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center" ng-click="vmEmployee.showEmployeeDataOnClick()">Edit Employee</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Employee</button>					
 				</center>
 				<br>
@@ -28,7 +27,7 @@
 
 
 	<!-- MODAL -->
-	<div class="modal modal-default" id="employee_modal" role="dialog" style="margin-top:10%" ng-controller="EmployeeAddUpdateController as vmEmployeeAddUpdate">
+	<div class="modal modal-default" id="employee_modal" role="dialog" style="margin-top:10%">
 	    <div class="col-sm-7 col-sm-offset-3">
 	        <div class="modal-content">
 	            <div class="modal-header">
@@ -37,28 +36,28 @@
 	                </center>
 	            </div>           
 	            <div class="modal-body">
-	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmEmployeeAddUpdate.employeeOnSubmit()">
+	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmEmployee.employeeOnSubmit()">
 
 	        		<div class="box-body">
 					  	<div class="col-md-5">
 						    <div class="form-group">
 						      <label>Firstname *</label>
-						      <input type="text" class="form-control" id="emp_fname" placeholder="Firstname" ng-model="vmEmployeeAddUpdate.formEmployee.firstName">
+						      <input type="text" class="form-control" id="emp_fname" placeholder="Firstname" ng-model="vmEmployee.formEmployee.firstName">
 						    </div>
 
 						    <div class="form-group">
 						      <label>Middlename</label>
-						      <input type="text" class="form-control" id="emp_mname" placeholder="Middlename" ng-model="vmEmployeeAddUpdate.formEmployee.middleName">
+						      <input type="text" class="form-control" id="emp_mname" placeholder="Middlename" ng-model="vmEmployee.formEmployee.middleName">
 						    </div>
 
 						    <div class="form-group">
 						      <label>Lastname*</label>
-						      <input type="text" class="form-control" id="emp_lname" placeholder="Lastname" ng-model="vmEmployeeAddUpdate.formEmployee.lastName">
+						      <input type="text" class="form-control" id="emp_lname" placeholder="Lastname" ng-model="vmEmployee.formEmployee.lastName">
 						    </div> 
 
 						    <div class="form-group">
 				                <label>Branch</label>
-				                <select class="form-control select2" style="width: 100%;" ng-model="vmEmployeeAddUpdate.formEmployee.branch" ng-options="branch as branch.name for branch in vmEmployee.branches track by branch.branch_id">
+				                <select class="form-control select2" style="width: 100%;" ng-model="vmEmployee.formEmployee.branch" ng-options="branch as branch.name for branch in vmEmployee.branches track by branch.branch_id">
 				                </select>
 				            </div>
 
@@ -71,13 +70,13 @@
 						          <div class="input-group-addon">
 						            <i class="fa fa-calendar"></i>
 						          </div>
-						          <input type="text" class="form-control pull-right" id="datepicker" ng-model="vmEmployeeAddUpdate.formEmployee.birthDate">
+						          <input type="text" class="form-control pull-right" id="datepicker" ng-model="vmEmployee.formEmployee.birthDate">
 						        </div>                
 					      	</div>
 
 						    <div class="form-group">
 						      <label>Mobile Number*</label>
-						      <input type="text" class="form-control" id="emp_mobile" placeholder="Mobile Number" ng-model="vmEmployeeAddUpdate.formEmployee.phoneNumber">
+						      <input type="text" class="form-control" id="emp_mobile" placeholder="Mobile Number" ng-model="vmEmployee.formEmployee.phoneNumber">
 						    </div>   
 						</div>
 
@@ -97,5 +96,4 @@
 </div>
 
 <script type="text/javascript" src="{!! asset('dist/js/angular/employee/employee.js') !!}"></script>
-<script type="text/javascript" src="{!! asset('dist/js/angular/employee/employee-add-update.js') !!}"></script>
 @stop
