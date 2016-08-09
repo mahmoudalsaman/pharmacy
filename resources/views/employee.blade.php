@@ -36,7 +36,7 @@
 	                </center>
 	            </div>           
 	            <div class="modal-body">
-	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmEmployee.employeeOnSubmit()">
+	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmEmployee.employeeOnSubmit(vmEmployee.isAdd)">
 
 	        		<div class="box-body">
 					  	<div class="col-md-5">

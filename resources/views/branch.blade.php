@@ -19,7 +19,7 @@
 				<center>
 					<button id=""  type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#branch_modal">Add Branch</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
-					ng-click="vmBranch.showBranchDataOnClick(vmBranch.isAdd)">Edit Branch</button>
+					ng-click="vmBranch.showBranchDataOnClick()">Edit Branch</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right" ng-click="vmBranch.deleteBranchOnClick()">Delete Branch</button>					
 				</center>
 				<br>
@@ -35,7 +35,7 @@
                 </center>
             </div>           
             <div class="modal-body">
-            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" ng-submit="vmBranch.branchOnSubmit()">
+            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" ng-submit="vmBranch.branchOnSubmit(vmBranch.isAdd)">
 
         		<div class="box-body">
 				  	<div class="col-md-5">
