@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
+    
     public $primaryKey = 'user_id';
 
     protected $dates = array('deleted_at');

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Branch extends Model
 {
+	use SoftDeletes;
+	
     public $primaryKey = 'branch_id';
 
     protected $dates = array('deleted_at');
