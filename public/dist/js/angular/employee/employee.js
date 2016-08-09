@@ -145,4 +145,32 @@ app.controller('EmployeeController', function($http, $q, DTOptionsBuilder, DTCol
 			});
 		}
 	};
+
+
+
+	vm.deleteEmployeeOnClick = function() {
+		var userIds = [];
+		var selectedUserData = tableService.getTableInstance().rows({selected: true}).data();
+
+		console.log(selectedUserData.count());
+		for(var i = 0; i < selectedUserData.count(); i++) {
+			userIds.push(selectedUserData[i].user_id);
+		}
+
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/users/1?userIds=' + JSON.stringify(userIds),
+			method: 'DELETE',
+			data: $.param({
+				'_token': appSettings.CSRF_TOKEN,
+			})
+		}).then(function(response) {
+			vm.dtInstance.changeData(vm.newPromise);
+
+			alert(response.data.message);
+		}, function(response) {
+			alert(response.data.message);
+		});
+	};
+
+
 });

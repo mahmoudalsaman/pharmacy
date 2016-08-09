@@ -114,4 +114,29 @@ app.controller('UomController', function($http, $q, DTOptionsBuilder, DTColumnBu
 			});
 		}
 	};
+
+
+
+	vm.deleteUonOnClick = function() {
+		var uomIds = [];
+		var selectedUomData = tableService.getTableInstance().rows({selected: true}).data();
+
+		console.log(selectedUomData.count());
+		for(var i = 0; i < selectedUomData.count(); i++) {
+			uomIds.push(selectedUomData[i].unit_of_measurement_id);
+		}
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/uoms/1?uomIds=' + JSON.stringify(uomIds),
+			method: 'DELETE',
+			data: $.param({
+				'_token': appSettings.CSRF_TOKEN,
+			})
+		}).then(function(response) {
+			vm.dtInstance.changeData(vm.newPromise);
+
+			alert(response.data.message);
+		}, function(response) {
+			alert(response.data.message);
+		});
+	};
 });

@@ -15,12 +15,13 @@
 					</div>	
 					
 				</div>
-				
+			
 				<center>
 					<button id=""  type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#customer_modal">Add Customer</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
 					ng-click="vmCustomer.showCustomerDataOnClick()">Edit Customer</button>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Customer</button>					
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right"
+					ng-click="vmCustomer.deleteCustomerOnClick()">Delete Customer</button>					
 				</center>
 				<br>
 			</form>

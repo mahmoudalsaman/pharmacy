@@ -115,4 +115,29 @@ app.controller('BrandController', function($http, $q, DTOptionsBuilder, DTColumn
 			});
 		}
 	};
+
+
+	vm.deleteBrandOnClick = function() {
+		var brandIds = [];
+		var selectedBrandData = tableService.getTableInstance().rows({selected: true}).data();
+
+		console.log(selectedBrandData.count());
+		for(var i = 0; i < selectedBrandData.count(); i++) {
+			brandIds.push(selectedBrandData[i].brand_id);
+		}
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/brands/1?brandIds=' + JSON.stringify(brandIds),
+			method: 'DELETE',
+			data: $.param({
+				'_token': appSettings.CSRF_TOKEN,
+			})
+		}).then(function(response) {
+			vm.dtInstance.changeData(vm.newPromise);
+
+			alert(response.data.message);
+		}, function(response) {
+			alert(response.data.message);
+		});
+	};
+
 });

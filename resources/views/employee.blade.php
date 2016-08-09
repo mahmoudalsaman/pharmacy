@@ -19,7 +19,8 @@
 				<center>
 					<button id=""  type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#employee_modal">Add Employee</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center" ng-click="vmEmployee.showEmployeeDataOnClick()">Edit Employee</button>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Employee</button>					
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right"
+					ng-click="vmEmployee.deleteEmployeeOnClick()">Delete Employee</button>
 				</center>
 				<br>
 			</form>

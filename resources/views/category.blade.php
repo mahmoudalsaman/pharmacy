@@ -16,7 +16,8 @@
 				<center>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#category_modal">Add Category</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center" ng-click="vmCategory.showCategoryDataOnClick()">Edit Category</button>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Category</button>					
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right"
+					ng-click="vmCategory.deleteCategoryOnClick()">Delete Category</button>					
 				</center>
 				<br>
 			</form>

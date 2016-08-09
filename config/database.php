@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => 'mysql',
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,9 +56,9 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', '3306'),
-            'username' => env('DB_USERNAME', '3306'),
-            'password' => env('DB_PASSWORD', '3306'),
+            'database' => 'db_pharmacy',
+            'username' => 'root',
+            'password' => '1234',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
@@ -69,15 +69,13 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', '3306'),
-            'username' => env('DB_USERNAME', '3306'),
-            'password' => env('DB_PASSWORD', '3306'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
             'prefix' => '',
-            'strict' => false,
-            'engine' => null,
+            'schema' => 'public',
         ],
 
     ],

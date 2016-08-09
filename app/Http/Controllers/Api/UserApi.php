@@ -120,7 +120,7 @@ class UserApi extends Controller
 
         for($i = 0; $i < count($userIds); $i++) 
         { 
-            $user = $this->queryUser($userIds[$i]);
+            $user = $this->queryUser2($userIds[$i]);
 
             $user->delete();
         }
@@ -129,6 +129,32 @@ class UserApi extends Controller
             'message'   => 'User successfully updated!'
         ));
     }
+
+     public function queryUser2($id)
+    {
+        $userQuery = User::select(
+            'user_id',
+            'branch_id_fk',
+            'user_type',
+            'first_name',
+            'middle_name',
+            'last_name',
+            'date_of_birth',
+            'cell_number',
+            'created_at',
+            'updated_at',
+            'deleted_at'
+        );
+
+        if($id) {
+            $userQueryResult = $userQuery->where('user_id', '=', $id)                
+                ->first();
+        } else {
+                  }
+
+        return $userQueryResult;
+    }
+
 
     public function queryUser($id)
     {

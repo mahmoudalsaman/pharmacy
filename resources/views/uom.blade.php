@@ -17,7 +17,8 @@
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#uom_modal">Add Uom</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
 					ng-click="vmUom.showUomDataOnClick()">Edit Uom</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Delete Uom</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+					ng-click="vmUom.deleteUonOnClick()">Delete Uom</button>
 				</center>
 				<br>
 			</form>

@@ -110,4 +110,28 @@ app.controller('CategoryController', function($http, $q, DTOptionsBuilder, DTCol
 			});
 		}
 	};
+
+	vm.deleteCategoryOnClick = function() {
+		var categoryIds = [];
+		var selectedCategoryData = tableService.getTableInstance().rows({selected: true}).data();
+
+		console.log(selectedCategoryData.count());
+		for(var i = 0; i < selectedCategoryData.count(); i++) {
+			categoryIds.push(selectedCategoryData[i].category_id);
+		}
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/categories/1?categoryIds=' + JSON.stringify(categoryIds),
+			method: 'DELETE',
+			data: $.param({
+				'_token': appSettings.CSRF_TOKEN,
+			})
+		}).then(function(response) {
+			vm.dtInstance.changeData(vm.newPromise);
+
+			alert(response.data.message);
+		}, function(response) {
+			alert(response.data.message);
+		});
+	};
+
 });

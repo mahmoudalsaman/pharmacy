@@ -131,4 +131,30 @@ app.controller('CustomerController', function($http, $q, DTOptionsBuilder, DTCol
 			});
 		}
 	};
+
+
+
+	vm.deleteCustomerOnClick = function() {
+		var userIds = [];
+		var selectedCategoryData = tableService.getTableInstance().rows({selected: true}).data();
+
+		console.log(selectedCategoryData.count());
+		for(var i = 0; i < selectedCategoryData.count(); i++) {
+			userIds.push(selectedCategoryData[i].user_id);
+		}
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/users/1?userIds=' + JSON.stringify(userIds),
+			method: 'DELETE',
+			data: $.param({
+				'_token': appSettings.CSRF_TOKEN,
+			})
+		}).then(function(response) {
+			vm.dtInstance.changeData(vm.newPromise);
+
+			alert(response.data.message);
+		}, function(response) {
+			alert(response.data.message);
+		});
+	};
+
 });

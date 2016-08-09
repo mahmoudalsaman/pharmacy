@@ -19,7 +19,8 @@
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#brand_modal">Add Brand</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
 					ng-click="vmBrand.showBrandDataOnClick()">Edit Brand</button>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Brand</button>					
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right"
+					ng-click="vmBrand.deleteBrandOnClick()">Delete Brand</button>					
 				</center>
 				<br>
 			</form>
