@@ -104,9 +104,14 @@ class UnitOfMeasurementApi extends Controller
      */
     public function destroy($id)
     {
-        $uom = $this->queryUom($id);
+        $uomIds = json_decode(Input::get('uomIds'));
 
-        $uom->delete();
+        for($i = 0; $i < count($uomIds); $i++) 
+        { 
+            $uom = $this->queryUom($uomIds[$i]);
+
+            $uom->delete();
+        }
 
         return response()->json(array(
             'message'   => 'Unit of measurement successully deleted!'

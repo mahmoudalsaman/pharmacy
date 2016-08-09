@@ -116,9 +116,14 @@ class UserApi extends Controller
      */
     public function destroy($id)
     {
-        $user = $this->queryUser($id);
+        $userIds = json_decode(Input::get('userIds'));
 
-        $user->delete();
+        for($i = 0; $i < count($userIds); $i++) 
+        { 
+            $user = $this->queryUser($userIds[$i]);
+
+            $user->delete();
+        }
 
         return response()->json(array(
             'message'   => 'User successfully updated!'

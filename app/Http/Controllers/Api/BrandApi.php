@@ -106,9 +106,14 @@ class BrandApi extends Controller
      */
     public function destroy($id)
     {
-        $brand = $this->queryBrand($id);
+        $brandIds = json_decode(Input::get('brandIds'));
 
-        $brand->delete();
+        for($i = 0; $i < count($brandIds); $i++) 
+        { 
+            $brand = $this->queryBrand($brandIds[$i]);
+
+            $brand->delete();
+        }
 
         return response()->json(array(
             'message'   => 'Brand successfully deleted!'

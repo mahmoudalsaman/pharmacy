@@ -168,9 +168,14 @@ class ProductApi extends Controller
      */
     public function destroy($id)
     {
-        $product = $this->queryProduct($id);
+        $productIds = json_decode(Input::get('productIds'));
 
-        $product->delete();
+        for($i = 0; $i < count($productIds); $i++) 
+        { 
+            $product = $this->queryProduct($productIds[$i]);
+
+            $product->delete();
+        }
 
         return response()->json(array(
             'message'   => 'Product successfully deleted!'

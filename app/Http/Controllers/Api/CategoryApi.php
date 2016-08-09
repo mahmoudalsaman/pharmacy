@@ -102,9 +102,14 @@ class CategoryApi extends Controller
      */
     public function destroy($id)
     {
-        $tag = $this->queryCategory($id);
+        $categoryIds = json_decode(Input::get('categoryIds'));
 
-        $tag->delete();
+        for($i = 0; $i < count($categoryIds); $i++) 
+        { 
+            $category = $this->queryCategory($categoryIds[$i]);
+
+            $category->delete();
+        }
 
         return response()->json(array(
             'message' => 'Category successfully deleted!'
