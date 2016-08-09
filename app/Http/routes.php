@@ -119,6 +119,7 @@ Route::get('logout', function() {
 
 Route::post('login', 'LoginController@doLogin');
 Route::post('register', 'RegistrationController@doRegister');
+Route::post('forgot-password', 'LoginController@forgotPassword');
 
 Route::group(['prefix' => 'pharmacy/api'], function() {
 	// Api version 1

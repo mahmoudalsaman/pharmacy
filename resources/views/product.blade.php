@@ -86,7 +86,7 @@
 
 				            <div class="form-group col-md-12">
 					          <label for="exampleInputFile">Choose Image</label>
-					          <input type="file" id="exampleInputFile">        
+					          <input type="file" id="exampleInputFile">   
 					        </div>
 						</div>
 
@@ -106,5 +106,4 @@
 	<!-- MODAL END -->
 </div>
 <script type="text/javascript" src="{!! asset('dist/js/angular/product/product.js') !!}"></script>
-<script type="text/javascript" src="{!! asset('dist/js/angular/product/product-add-update.js') !!}"></script>
 @stop
