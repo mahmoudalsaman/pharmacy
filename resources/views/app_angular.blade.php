@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	var app = angular.module('pharmacyApp', ['datatables', 'datatables.select'])
 		.constant('appSettings', {
-			'BASE_URL'	: 'http://localhost:8000/',	
+			'BASE_URL'	: 'http://radiant-scrubland-85792.herokuapp.com/',	
 			'CSRF_TOKEN': '{!! csrf_token() !!}'
 		});
 
