@@ -138,7 +138,7 @@ app.controller('BranchController', function($http, $q, DTOptionsBuilder, DTColum
 				'_token': appSettings.CSRF_TOKEN,
 			})
 		}).then(function(response) {
-			$('#branch_modal').modal('hide');
+			vm.dtInstance.changeData(vm.newPromise);
 
 			alert(response.data.message);
 		}, function(response) {
