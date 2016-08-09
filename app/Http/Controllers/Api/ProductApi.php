@@ -145,6 +145,16 @@ class ProductApi extends Controller
             ));
 
 
+            if($request->quantity != null) {
+                $productInventory = ProductInventory::where('product_id_fk', '=', $product->product_id)
+                ->first();
+
+                $productInventory->previous_value = $productInventory->current_value;
+                $productInventory->current_value += (int) $request->quantity;
+
+                $productInventory->save();
+            }
+
 
             DB::commit();
 
