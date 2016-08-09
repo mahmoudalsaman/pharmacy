@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Category;
 
+use Input;
+
 class CategoryApi extends Controller
 {
     /**

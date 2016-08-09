@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\UnitOfMeasurement;
 
+use Input;
+
 class UnitOfMeasurementApi extends Controller
 {
     /**

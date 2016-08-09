@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Brand;
 
+use Input;
+
 class BrandApi extends Controller
 {
     /**
