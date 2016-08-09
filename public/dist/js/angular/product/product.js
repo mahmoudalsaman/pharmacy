@@ -159,4 +159,30 @@ app.controller('ProductController', function($http, $q, DTOptionsBuilder, DTColu
 				alert(response.data.message);
 			});		
 	};
+
+
+
+	vm.deleteProductOnClick = function() {
+		var productIds = [];
+		var selectedProductData = tableService.getTableInstance().rows({selected: true}).data();
+
+		console.log(selectedProductData.count());
+		for(var i = 0; i < selectedProductData.count(); i++) {
+			productIds.push(selectedProductData[i].product_id);
+		}
+
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/products/1?productIds=' + JSON.stringify(productIds),
+			method: 'DELETE',
+			data: $.param({
+				'_token': appSettings.CSRF_TOKEN,
+			})
+		}).then(function(response) {
+			vm.dtInstance.changeData(vm.newPromise);
+
+			alert(response.data.message);
+		}, function(response) {
+			alert(response.data.message);
+		});
+	};
 });
