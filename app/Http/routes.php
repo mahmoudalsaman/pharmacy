@@ -13,7 +13,7 @@
 
 Route::get('test', function() {
 	$url = 'https://www.itexmo.com/php_api/api.php';
-	$itexmo = array('1' => '09396531608', '2' => 'This is a test message! Blablabla...qwertyuiop', '3' => '09396531608_RI1AE');
+	$itexmo = array('1' => 'fjdlskjfkdsjklfjdskljfkdsjklfdjkfsdj', '2' => 'This is a test message! Blablabla...qwertyuiop', '3' => '09396531608_RI1AE');
 	$param = array(
 	    'http' => array(
 	        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
