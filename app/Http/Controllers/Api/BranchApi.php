@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Branch;
 
+use Input;
+
 class BranchApi extends Controller
 {
     /**
@@ -108,9 +110,14 @@ class BranchApi extends Controller
      */
     public function destroy($id)
     {
-        $branch = $this->queryBranch($id);
+        $branchIds = json_decode(Input::get('branchIds'));
 
-        $branch->delete();
+        for($i = 0; $i < count($branchIds); $i++) 
+        { 
+            $branch = $this->queryBranch($branchIds[$i]);
+
+            $branch->delete();
+        }
 
         return response()->json(array(
             'message' => 'Branch successfully deleted!'

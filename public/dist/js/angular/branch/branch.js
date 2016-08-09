@@ -121,4 +121,28 @@ app.controller('BranchController', function($http, $q, DTOptionsBuilder, DTColum
 			});	
 		}
 	};
+
+	vm.deleteBranchOnClick = function() {
+		var branchIds = [];
+		var selectedBranchData = tableService.getTableInstance().rows({selected: true}).data();
+
+		console.log(selectedBranchData.count());
+		for(var i = 0; i < selectedBranchData.count(); i++) {
+			branchIds.push(selectedBranchData[i].branch_id);
+		}
+
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/branches/1?branchIds=' + JSON.stringify(branchIds),
+			method: 'DELETE',
+			data: $.param({
+				'_token': appSettings.CSRF_TOKEN,
+			})
+		}).then(function(response) {
+			$('#branch_modal').modal('hide');
+
+			alert(response.data.message);
+		}, function(response) {
+			alert(response.data.message);
+		});
+	};
 });
