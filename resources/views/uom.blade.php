@@ -16,7 +16,7 @@
 				<center>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#uom_modal">Add Uom</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
-					data-toggle="modal" data-target="#uom_modal">Edit Uom</button>
+					ng-click="vmUom.showUomDataOnClick()">Edit Uom</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal">Delete Uom</button>
 				</center>
 				<br>
@@ -24,7 +24,7 @@
 	</div>
 
 	<!-- MODAL -->
-	<div class="modal modal-default" id="uom_modal" role="dialog" style="margin-top:10%" ng-controller="UomAddUpdateController as vmUomAddUpdate">
+	<div class="modal modal-default" id="uom_modal" role="dialog" style="margin-top:10%">
 	    <div class="col-sm-6 col-sm-offset-4">
 	        <div class="modal-content">
 	            <div class="modal-header">
@@ -33,18 +33,18 @@
 	                </center>
 	            </div>           
 	            <div class="modal-body">
-	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmUomAddUpdate.uomOnSubmit()">
+	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmUom.uomOnSubmit(vmUom.isAdd)">
 	        		<div class="box-body">        
 
 					  	<div class="col-md-12">		
 					  		<div class="form-group">
 						      <label>Name</label>
-						      <input type="text" class="form-control" id="" placeholder="Name" ng-model="vmUomAddUpdate.formUom.uomName">
+						      <input type="text" class="form-control" id="" placeholder="Name" ng-model="vmUom.formUom.uomName">
 						    </div>
 
 						    <div class="form-group">
 						      <label>Unit of Measurement</label>
-						      <input type="text" class="form-control" id="" placeholder="example mg,gram etc" ng-model="vmUomAddUpdate.formUom.uomAbbreviation">
+						      <input type="text" class="form-control" id="" placeholder="example mg,gram etc" ng-model="vmUom.formUom.uomAbbreviation">
 						    </div>	
 						</div>
 

@@ -1,6 +1,7 @@
-app.controller('UomController', function($http, $q, DTOptionsBuilder, DTColumnBuilder, appSettings) {
+app.controller('UomController', function($http, $q, DTOptionsBuilder, DTColumnBuilder, appSettings, tableService) {
 	var vm = this;
 
+	vm.isAdd = true;
 	vm.formUom = {};
 
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
@@ -27,8 +28,17 @@ app.controller('UomController', function($http, $q, DTOptionsBuilder, DTColumnBu
 		DTColumnBuilder.newColumn('updated_at').withTitle('Updated At')
 	];
 
+	vm.dtOptions.drawCallback = function() {
+    	var table = this.DataTable();
+
+    	tableService.setTableInstance(table);
+    };
+
 	$('#uom_modal').on('hidden.bs.modal', function() {
 		vm.dtInstance.changeData(vm.newPromise);
+
+		vm.isAdd = true;
+		vm.formUom = {};
 	});
 
 	vm.newPromise = getTags;
@@ -45,5 +55,63 @@ app.controller('UomController', function($http, $q, DTOptionsBuilder, DTColumnBu
 			});
 
 		return defer.promise;
+	};
+
+	vm.showUomDataOnClick = function() {
+		vm.isAdd = false;
+
+		var uomId = tableService.getTableInstance().row({selected: true}).data().unit_of_measurement_id;
+
+		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/uoms/' + uomId + '/edit')
+			.then(function(response) {
+				vm.formUom.uomName = response.data.uom_details.name;
+				vm.formUom.uomAbbreviation = response.data.uom_details.abbreviation;
+
+				$('#uom_modal').modal('show');
+			}, function(error) {
+				alert("Error fetching unit of measurement data");
+			});
+	}
+
+	vm.uomOnSubmit = function(isAdd) {
+		if(isAdd) {
+			$http({
+				url: appSettings.BASE_URL + 'pharmacy/api/v1/uoms',
+				method: 'POST',
+				data: $.param({
+					'name': vm.formUom.uomName,
+					'abbreviation': vm.formUom.uomAbbreviation
+				}),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				}
+			}).then(function(response) {
+				$('#uom_modal').modal('hide');
+
+				alert(response.data.message);
+			}, function(response) {
+				alert(response.data.message);
+			});
+		} else {
+			var uomId = tableService.getTableInstance().row({selected: true}).data().unit_of_measurement_id;
+
+			$http({
+				url: appSettings.BASE_URL + 'pharmacy/api/v1/uoms/' + uomId,
+				method: 'PUT',
+				data: $.param({
+					'name': vm.formUom.uomName,
+					'abbreviation': vm.formUom.uomAbbreviation
+				}),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				}
+			}).then(function(response) {
+				$('#uom_modal').modal('hide');
+
+				alert(response.data.message);
+			}, function(response) {
+				alert(response.data.message);
+			});
+		}
 	};
 });

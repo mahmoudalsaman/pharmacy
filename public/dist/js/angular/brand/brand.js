@@ -1,6 +1,7 @@
-app.controller('BrandController', function($http, $q, DTOptionsBuilder, DTColumnBuilder, appSettings) {
+app.controller('BrandController', function($http, $q, DTOptionsBuilder, DTColumnBuilder, appSettings, tableService) {
 	var vm = this;
 
+	vm.isAdd = true;
 	vm.formBrand = {};
 
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
@@ -28,8 +29,17 @@ app.controller('BrandController', function($http, $q, DTOptionsBuilder, DTColumn
 		DTColumnBuilder.newColumn('updated_at').withTitle('Updated At')
 	];
 
+	vm.dtOptions.drawCallback = function() {
+    	var table = this.DataTable();
+
+    	tableService.setTableInstance(table);
+    };
+
 	$('#brand_modal').on('hidden.bs.modal', function() {
 		vm.dtInstance.changeData(vm.newPromise);
+
+		vm.isAdd = true;
+		vm.formBrand = {};
 	});
 
 	vm.newPromise = getBrands;
@@ -46,5 +56,63 @@ app.controller('BrandController', function($http, $q, DTOptionsBuilder, DTColumn
 			});
 
 		return defer.promise;
+	};
+
+	vm.showBrandDataOnClick = function() {
+		vm.isAdd = false;
+
+		var brandId = tableService.getTableInstance().row({selected: true}).data().brand_id;
+
+		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/brands/' + brandId + '/edit')
+			.then(function(response) {
+				vm.formBrand.brandName = response.data.brand_details.name;
+				vm.formBrand.brandDescription = response.data.brand_details.description;
+
+				$('#brand_modal').modal('show');
+			}, function(error) {
+				alert("Error fetching brand data");
+			});
+	}
+
+	vm.brandOnSubmit = function(isAdd) {
+		if(isAdd) {
+			$http({
+				url: appSettings.BASE_URL + 'pharmacy/api/v1/brands',
+				method: 'POST',
+				data: $.param({
+					'name': vm.formBrand.brandName,
+					'description': vm.formBrand.brandDescription
+				}),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				}
+			}).then(function(response) {
+				$('#brand_modal').modal('hide');
+
+				alert(response.data.message);
+			}, function(response) {
+				alert(response.data.message);
+			});
+		} else {
+			var brandId = tableService.getTableInstance().row({selected: true}).data().brand_id;
+
+			$http({
+				url: appSettings.BASE_URL + 'pharmacy/api/v1/brands/' + brandId,
+				method: 'PUT',
+				data: $.param({
+					'name': vm.formBrand.brandName,
+					'description': vm.formBrand.brandDescription
+				}),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				}
+			}).then(function(response) {
+				$('#brand_modal').modal('hide');
+
+				alert(response.data.message);
+			}, function(response) {
+				alert(response.data.message);
+			});
+		}
 	};
 });

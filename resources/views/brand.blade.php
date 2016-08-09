@@ -18,7 +18,7 @@
 				<center>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#brand_modal">Add Brand</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
-					data-toggle="modal" data-target="#brand_modal">Edit Brand</button>
+					ng-click="vmBrand.showBrandDataOnClick()">Edit Brand</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Brand</button>					
 				</center>
 				<br>
@@ -26,7 +26,7 @@
 	</div>
 
 	<!-- MODAL -->
-	<div class="modal modal-default" id="brand_modal" role="dialog" style="margin-top:10%" ng-controller="BrandAddUpdateController as vmBrandAddUpdate">
+	<div class="modal modal-default" id="brand_modal" role="dialog" style="margin-top:10%">
 	    <div class="col-sm-5 col-sm-offset-4">
 	        <div class="modal-content">
 	            <div class="modal-header">
@@ -35,17 +35,17 @@
 	                </center>
 	            </div>           
 	            <div class="modal-body">
-	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmBrandAddUpdate.brandOnSubmit()">
+	            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmBrand.brandOnSubmit(vmBrand.isAdd)">
 	        		<div class="box-body">        		
 					  	<div class="col-md-10">
 						   <div class="form-group">
 						      <label>Brand Name*</label>
-						      <input type="text" class="form-control" id="brand_name" placeholder="Brand Name" ng-model="vmBrandAddUpdate.formBrand.brandName">
+						      <input type="text" class="form-control" id="brand_name" placeholder="Brand Name" ng-model="vmBrand.formBrand.brandName">
 						    </div>
 
 						    <div class="form-group">
 						      <label>Brand Description </label>
-						      <input type="text" class="form-control" id="brand_description" placeholder="Brand Description" ng-model="vmBrandAddUpdate.formBrand.brandDescription">
+						      <input type="text" class="form-control" id="brand_description" placeholder="Brand Description" ng-model="vmBrand.formBrand.brandDescription">
 						    </div>
 
 						    <div class="form-group col-md-12">

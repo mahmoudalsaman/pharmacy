@@ -66,8 +66,6 @@ app.controller('CategoryController', function($http, $q, DTOptionsBuilder, DTCol
 				vm.formCategory.categoryName = response.data.category_details.name;
 
 				$('#category_modal').modal('show');
-
-				console.log(response.data.category_details.name);
 			}, function(error) {
 				alert("Error fetching category data");
 			});
