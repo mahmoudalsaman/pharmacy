@@ -168,7 +168,7 @@
               <li><a href="customer"><i class="fa fa-circle-o"></i>Customer</a></li>            
               <li><a href="category"><i class="fa fa-circle-o"></i>Category</a></li>
               <li><a href="brand"><i class="fa fa-circle-o"></i>Brand</a></li>
-              <li><a href="uom"><i class="fa fa-circle-o"></i>Unit Of Measurment</a></li>
+              <li><a href="uom"><i class="fa fa-circle-o"></i>Unit Of Measurement</a></li>
               <li><a href="product"><i class="fa fa-circle-o"></i>Products</a></li>
             </ul>
           </li>

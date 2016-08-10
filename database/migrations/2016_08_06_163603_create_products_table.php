@@ -26,6 +26,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description')
                 ->nullable();
+            $table->boolean('is_prescription')
+                ->default(false);
             $table->text('image_path')
                 ->nullable();
             $table->decimal('price', 12, 2);
