@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
             'middle_name'   => 'Campos',
             'last_name'     => 'Lim',
             'date_of_birth' => '1996-08-02',
-            'password'      => bcrypt('admin12345'),
+            'password'      => bcrypt('customer12345'),
             'cell_number'   => '09051537422',
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now()
