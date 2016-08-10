@@ -54,12 +54,13 @@ class ProductApi extends Controller
                 
             $product = new Product();
 
-            $product->name = $request->name;
-            $product->description = $request->description != null ? $request->description : null;
-            $product->image_path = null; // for now
-            $product->category_id_fk = $request->category_id_fk;
-            $product->price = $request->price;
-            $product->amount = $request->amount;
+            $product->name                      = $request->name;
+            $product->description               = $request->description != null ? $request->description : null;
+            $product->image_path                = null; // for now
+            $product->category_id_fk            = $request->category_id_fk;
+            $product->price                     = $request->price;
+            $product->amount                    = $request->amount;
+            $product->is_prescription           = $request->is_prescription;
             $product->unit_of_measurement_id_fk = $request->unit_of_measurement_id_fk;
 
             $product->save();
@@ -130,10 +131,11 @@ class ProductApi extends Controller
 
             $product = $this->queryProduct($id);
 
-            $product->name          = $request->name;
-            $product->description   = $request->description != null ? $request->description : null;
-            $product->image_path    = null; // for now
-            $product->price         = $request->price;
+            $product->name              = $request->name;
+            $product->description       = $request->description != null ? $request->description : null;
+            $product->is_prescription   = $request->is_prescription;
+            $product->image_path        = null; // for now
+            $product->price             = $request->price;
 
             $product->save();
 
@@ -205,6 +207,7 @@ class ProductApi extends Controller
             'product_inventories.current_value',
             'products.description',
             'products.image_path',
+            'products.is_prescription',
             'products.price',
             'products.created_at',
             'products.updated_at',

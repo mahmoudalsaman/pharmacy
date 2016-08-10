@@ -25,11 +25,18 @@ app.controller('ProductController', function($http, $q, DTOptionsBuilder, DTColu
 		DTColumnBuilder.newColumn('product_id').withTitle('Image'),
 		DTColumnBuilder.newColumn('category_name').withTitle('Category'),
 		DTColumnBuilder.newColumn('product_name').withTitle('Name'),
+		DTColumnBuilder.newColumn('is_prescription').withTitle('Prescription Medicine')
+			.renderWith(function(data, type, full) {
+				return full.is_prescription ? 'Yes' : 'No';
+			}),
 		DTColumnBuilder.newColumn('amount').withTitle('Dosage Amount'),
 		DTColumnBuilder.newColumn('previous_value').withTitle('Previous Stock'),
 		DTColumnBuilder.newColumn('current_value').withTitle('Current Stock'),
 		DTColumnBuilder.newColumn('abbreviation').withTitle('Unit of Measurement'),
-		DTColumnBuilder.newColumn('description').withTitle('Description'),
+		DTColumnBuilder.newColumn('description').withTitle('Description')
+			.renderWith(function(data, type, full) {
+				return full.description != null ? full.description : '---';
+			}),
 		DTColumnBuilder.newColumn('price').withTitle('Price'),
 		DTColumnBuilder.newColumn('created_at').withTitle('Created At'),
 		DTColumnBuilder.newColumn('updated_at').withTitle('Updated At')
@@ -82,16 +89,16 @@ app.controller('ProductController', function($http, $q, DTOptionsBuilder, DTColu
 			});
 	}
 
-	vm.productOnSubmit = function(isAdd) {
-		if(isAdd) {
-			$http({
-				url: appSettings.BASE_URL + 'pharmacy/api/v1/products',
-				method: 'POST',
+	function submitForm(url, httpVerb) {
+		$http({
+				url: url,
+				method: httpVerb,
 				data: $.param({
 					'name': vm.formProduct.productName,
 					'description': vm.formProduct.productDescription,
 					'price': vm.formProduct.productPrice,
 					'category_id_fk': vm.formProduct.category.category_id,
+					'is_prescription': vm.formProduct.isPrescriptionMed ? 1 : 0,
 					'amount': vm.formProduct.dosageAmount,
 					'unit_of_measurement_id_fk': vm.formProduct.uom.unit_of_measurement_id,
 					'quantity': vm.formProduct.quantity
@@ -99,38 +106,22 @@ app.controller('ProductController', function($http, $q, DTOptionsBuilder, DTColu
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				}
-			}).then(function(response) {
+		}).then(function(response) {
 				$('#product_modal').modal('hide');
 
 				alert(response.data.message);
 			}, function(response) {
 				alert(response.data.message);
-			});
+		});
+	}
+
+	vm.productOnSubmit = function(isAdd) {
+		if(isAdd) {
+			submitForm(appSettings.BASE_URL + 'pharmacy/api/v1/products', 'POST');
 		} else {
 			var productId = tableService.getTableInstance().row({selected: true}).data().product_id;
 
-			$http({
-				url: appSettings.BASE_URL + 'pharmacy/api/v1/products/' + productId,
-				method: 'PUT',
-				data: $.param({
-					'name': vm.formProduct.productName,
-					'description': vm.formProduct.productDescription,
-					'price': vm.formProduct.productPrice,
-					'category_id_fk': vm.formProduct.category.category_id,
-					'amount': vm.formProduct.dosageAmount,
-					'unit_of_measurement_id_fk': vm.formProduct.uom.unit_of_measurement_id,
-					'quantity': vm.formProduct.quantity
-				}),
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				}
-			}).then(function(response) {
-				$('#product_modal').modal('hide');
-
-				alert(response.data.message);
-			}, function(response) {
-				alert(response.data.message);
-			});
+			submitForm(appSettings.BASE_URL + 'pharmacy/api/v1/products/' + productId, 'PUT');
 		}
 	};
 

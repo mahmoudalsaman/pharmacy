@@ -23,7 +23,10 @@ app.controller('BranchController', function($http, $q, DTOptionsBuilder, DTColum
 		DTColumnBuilder.newColumn('branch_id').withTitle('Branch ID'),
 		DTColumnBuilder.newColumn('branch_id').withTitle('Image'),
 		DTColumnBuilder.newColumn('name').withTitle('Branch Name'),
-		DTColumnBuilder.newColumn('description').withTitle('Description'),
+		DTColumnBuilder.newColumn('description').withTitle('Description')
+			.renderWith(function(data, type, full) {
+				return full.description != null ? full.description : '---';
+			}),
 		DTColumnBuilder.newColumn('address').withTitle('Address'),
 		DTColumnBuilder.newColumn('created_at').withTitle('Created At'),
 		DTColumnBuilder.newColumn('updated_at').withTitle('Updated At')

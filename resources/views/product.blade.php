@@ -50,7 +50,7 @@
 
 						    <div class="form-group">
 						    	<div class="checkbox">
-								  <label><input type="checkbox" value="">Prescription Medicine</label>
+								  <label><input type="checkbox" value="" ng-model="vmProduct.formProduct.isPrescriptionMed">Prescription Medicine</label>
 								</div>
 						    </div>
 
