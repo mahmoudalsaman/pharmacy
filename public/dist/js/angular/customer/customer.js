@@ -92,7 +92,7 @@ app.controller('CustomerController', function($http, $q, DTOptionsBuilder, DTCol
 					'last_name': vm.formCustomer.lastName,
 					'date_of_birth': vm.formCustomer.birthDate,
 					'cell_number': vm.formCustomer.phoneNumber,
-					'password': 'employee12345'
+					'password': 'customer12345'
 				}),
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
