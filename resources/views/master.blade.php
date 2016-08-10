@@ -128,7 +128,7 @@
 
         <li class="header">TRANSACTION</li>
         @if(session('user_type') == 2)
-          <li class="treeview">
+          <li class="{!! Request::url() == url('order') || Request::url() == url('cart') ? 'active' : '' !!} treeview">
             <a href="#">
               <i class="fa fa-home"></i> <span>HOME</span>
               <span class="pull-right-container">
@@ -136,8 +136,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="order"><i class="fa fa-fw fa-cart-plus"></i>Order</a></li>
-              <li><a href="cart"><i class="fa fa-fw fa-cart-arrow-down"></i>Cart</a></li>
+              <li class="{!! Request::url() == url('order') ? 'active' : '' !!}"><a href="{!! url('order') !!}"><i class="fa fa-fw fa-cart-plus"></i>Order</a></li>
+              <li class="{!! Request::url() == url('cart') ? 'active' : '' !!}"><a href="{!! url('cart') !!}"><i class="fa fa-fw fa-cart-arrow-down"></i>Cart</a></li>
             </ul>
           </li>
 
