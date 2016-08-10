@@ -33,4 +33,36 @@ class LoginController extends Controller
     		return 'No User found.';
     	}
     }
+
+    public function forgotPassword(Request $request) 
+    {
+        $user = User::where('cell_number', '=', $request->mobile_number)
+            ->first();
+
+        if($user) {
+            $newPassword = str_random(8);
+
+            $user->password = bcrypt($newPassword);
+
+            $user->save();
+
+            $url = 'https://www.itexmo.com/php_api/api.php';
+            $message = 'Your account has been successfully restored! Your new password is ' . $newPassword;
+            $itexmo = array('1' => $request->mobile_number, '2' => $message, '3' => '09293310136_IT77U');
+            $param = array(
+                'http' => array(
+                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method'  => 'POST',
+                    'content' => http_build_query($itexmo),
+                ),
+            );
+            $context  = stream_context_create($param);
+            
+            file_get_contents($url, false, $context);
+
+            return redirect('login');
+        } else {
+            return 'The mobile number you input is cannot be found.';
+        }
+    }
 }

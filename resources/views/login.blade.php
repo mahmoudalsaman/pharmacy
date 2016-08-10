@@ -69,25 +69,24 @@
                 </center>
             </div>           
             <div class="modal-body">
-            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "" id="">
+            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "{!! url('forgot-password') !!}">
+
+            {{ csrf_field() }}
+
             <div class="box-body">
-          <div class="form-group">    
-         
-        </div>  
-
-        <div class="form-group col-md-12">
-          <label>Mobile Number</label>
-          <input type="text" class="form-control" name="" placeholder="Mobile Number">
-        </div>
+              <div class="form-group col-md-12">
+                <label>Mobile Number</label>
+                <input type="text" class="form-control" name="mobile_number" placeholder="Mobile Number">
+              </div>
 
 
-        <div class="col-sm-12 modal-footer">
-            <center>              
-              <button type="submit" class="btn btn-primary" data-dismiss="modal">Send</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </center>
-          </div>
-        </div>  
+            <div class="col-sm-12 modal-footer">
+                <center>              
+                  <button type="submit" class="btn btn-primary" >Send</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </center>
+              </div>
+            </div>  
             </form>  
             </div>                      
         </div>
