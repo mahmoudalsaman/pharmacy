@@ -12,7 +12,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{!! asset('dist/css/ionicons.min.css') !!}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{!! asset('dist/css/AdminLTE.min.css') !!}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -30,21 +30,23 @@
   <link rel="stylesheet" href="{!! asset('plugins/daterangepicker/daterangepicker.css') !!}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{!! asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">
+
   <link rel="stylesheet" href="{!! asset('plugins/select2/select2.min.css') !!}">
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/css/angular-datatables.min.css">
-
-<link rel="stylesheet" href="{!! asset('bootstrap/css/ihover.css') !!}">
+  <link rel="stylesheet" href="{!! asset('bootstrap/css/jquery.dataTables.min.css') !!}">
+  <link rel="stylesheet" href="{!! asset('bootstrap/css/select.dataTables.min.css') !!}">
+  <link rel="stylesheet" href="{!! asset('bootstrap/css/angular-datatables.min.css') !!}">
+  <link rel="stylesheet" href="{!! asset('bootstrap/css/ihover.css') !!}">
   <!-- jQuery 2.2.3 -->
   <script src="{!! asset('plugins/jQuery/jquery-2.2.3.min.js') !!}"></script>
-  
+  <script src="{!! asset('bootstrap/js/jquery.dataTables.min.js') !!}"></script>
+
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/angular-datatables.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/plugins/select/angular-datatables.select.min.js"></script>
+  
+  <script src="{!! asset('bootstrap/js/dataTables.select.min.js') !!}"></script>
+  <script src="{!! asset('bootstrap/js/angular.min.js') !!}"></script>
+  <script src="{!! asset('bootstrap/js/angular-datatables.min.js') !!}"></script>
+  <script src="{!! asset('bootstrap/js/angular-datatables.select.min.js') !!}"></script>
 
   @include('app_angular')
 </head>
@@ -198,7 +200,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="{!! asset('bootstrap/js/jquery-ui.min.js') !!}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
@@ -246,9 +248,7 @@
     $('#datepicker').datepicker({
       autoclose: true
     });
-
     $(".select2").select2();
-
 </script>
 
 </html>
