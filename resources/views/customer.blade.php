@@ -90,5 +90,4 @@
 </div>
 
 <script type="text/javascript" src="{!! asset('dist/js/angular/customer/customer.js') !!}"></script>
-<script type="text/javascript" src="{!! asset('dist/js/angular/customer/customer-add-update.js') !!}"></script>
 @stop

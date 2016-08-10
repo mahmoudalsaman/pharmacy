@@ -86,7 +86,7 @@ app.controller('CustomerController', function($http, $q, DTOptionsBuilder, DTCol
 				url: appSettings.BASE_URL + 'pharmacy/api/v1/users?userType=2',
 				method: 'POST',
 				data: $.param({
-					'user_type': 1,
+					'user_type': 2,
 					'first_name': vm.formCustomer.firstName,
 					'middle_name': vm.formCustomer.middleName,
 					'last_name': vm.formCustomer.lastName,
