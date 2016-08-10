@@ -15,7 +15,7 @@ class BranchesTableSeeder extends Seeder
     {
         DB::table('branches')->insert(array(
         	'name'             => 'Zapote Branch',
-        	'address'          => 'Saan to?',
+        	'address'          => 'Zapote',
             'created_at'       => Carbon::now(),
             'updated_at'       => Carbon::now()
         ));

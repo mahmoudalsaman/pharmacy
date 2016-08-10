@@ -48,6 +48,11 @@
 						      <input type="text" class="form-control" id="product__description" placeholder="Product Description" ng-model="vmProduct.formProduct.productDescription">
 						    </div>	
 
+						    <div class="form-group">
+						    	<div class="checkbox">
+								  <label><input type="checkbox" value="">Prescription Medicine</label>
+								</div>
+						    </div>
 
 						    <div class="form-group">
 						      <label>Product Price *</label>
