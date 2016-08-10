@@ -18,13 +18,6 @@ app.controller('ProductOrderController', function($http, appSettings) {
 			alert(response.data.message);
 		});
 
-	$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/brands')
-		.then(function(response) {
-			vm.brands = response.data.active_brands;
-		}, function(response) {
-			alert(response.data.message);
-		});
-
 	$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/products')
 		.then(function(response) {
 			vm.products = response.data.active_products;

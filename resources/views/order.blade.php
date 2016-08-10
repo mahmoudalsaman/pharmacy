@@ -25,12 +25,6 @@
 		<select class="form-control" style="width: 100%;" ng-model="vmProductOrder.category" ng-options="category as category.name for category in vmProductOrder.categories track by category.category_id">  
 		</select>
 	</div>
-
-	<div class="form-group col-md-3">
-		<label>Brand</label>
-		<select class="form-control" style="width: 100%;" ng-model="vmProductOrder.brand" ng-options="brand as brand.name for brand in vmProductOrder.brands track by brand.brand_id">
-		</select>
-	</div>
 </div>
 
 
@@ -55,8 +49,6 @@
 
 
 </div>
-
-
 
 <!-- MODAL -->
 
@@ -102,22 +94,3 @@
 <script type="text/javascript" src="{!! asset('dist/js/angular/product-order/product-order.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('dist/js/dir-pagination.js') !!}"></script>
 @stop
-
-
-<!-- <div class="panel panel-primary box-body col-md-3" style="margin-top:3%; margin-left:7%;height:100%" >
-  <div class="panel-body">	
-			<form class="form-horizontal" role="form" >
-				<div class="form-group">
-					<h4><b>Product Name</b></h4>										
-					<h5>Description: {PARA SA LAGNAT}</h5>
-				</div>
-
-			
-				<center>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#add_to_cart">Add to Cart</button>
-				</center>
-				<br>
-			</form>
-	</div>
-</div>
- -->

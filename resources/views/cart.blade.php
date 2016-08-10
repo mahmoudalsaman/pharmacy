@@ -7,9 +7,7 @@
 	<div class="col-md-12">
 		<div class="form-group col-md-3">
 	        <label>Delivery Type</label>
-	        <select class="form-control" style="width: 100%;" id="delivery_type" ng-model="vmCart.deliveryType" ng-change="vmCart.deliveryTypeOnChange()">
-	          <option value="pick-up" selected="selected">Pick-up</option>
-	          <option value="delivery">Delivery</option>			                 
+	        <select class="form-control" style="width: 100%;" id="delivery_type" ng-model="vmCart.deliveryType" ng-change="vmCart.deliveryTypeOnChange()" ng-options="deliveryType as deliveryType.name for deliveryType in vmCart.deliveryTypes track by deliveryType.delivery_type_id">	                 
 	        </select>
 	  	</div>
 
@@ -66,8 +64,8 @@
 				</div>
 				
 				<center>					
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center" data-toggle="modal" data-target="#cart">Edit Order</button>
-					<button id="" type="button" class="btn btn-danger column-md-4 span4 text-center">Delete Order</button>
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center" ng-click="vmCart.showUserCartDataOnClick()">Edit Order</button>
+					<button id="" type="button" class="btn btn-danger column-md-4 span4 text-center" ng-click="vmCart.deleteUserCartOnClick()">Delete Order</button>
 				</center>
 				<br>
 			</form>
@@ -96,23 +94,23 @@
                 </center>
             </div>           
             <div class="modal-body">
-            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" method = "post" action = "" id="">
+            <form class="form-horizontal col-md-offset-1" role="form" data-toggle="validator" ng-submit="vmCart.updateCartOnClick()">
         		<div class="box-body">        		
 				  	<div class="col-md-10">
 					    <div class="form-group">
 					    	<label>Quantity:</label>
-			               	<input type="number" class="form-control" name="" placeholder="Quantity">
+			               	<input type="number" class="form-control" name="" placeholder="Quantity" ng-model="vmCart.formUserCart.quantity" ng-change="vmCart.quantityOnChange()">
 		              	</div>
 
 		              	<div class="form-group">
 					      <label>Total Amount*</label>
-					      <input type="text" disabled="" class="form-control" id="" placeholder="Total Amount">
+					      <input type="text" class="form-control" id="" placeholder="Total Amount" ng-model="vmCart.formUserCart.totalAmount" disabled="disabled">
 					    </div>			
 					</div>
 
 					<div class="col-sm-12 modal-footer">
 						<center>
-							<button type="button" class="btn btn-primary column-md-4 span4 text-right">Submit</button>
+							<button type="submit" class="btn btn-primary column-md-4 span4 text-right">Submit</button>
 							<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
 						</center>
 					</div>

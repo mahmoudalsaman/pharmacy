@@ -1,77 +1,97 @@
 app.controller('CartController', function($http, $q, DTOptionsBuilder, DTColumnBuilder, appSettings, $window, tableService) {
 	var vm = this;
 
-	vm.formEmployee = {};
+	vm.formUserCart = {};
 
 	vm.isPickUp = true;
-	vm.deliveryType = 'pick-up';
 	vm.totalAmountDueUntouched = 0;
 
 	vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-		return getEmployees();
+		return getUserCart();
 	})
-	.withPaginationType('full_numbers');
+	.withPaginationType('full_numbers')
+	.withSelect({
+        style:    'os',
+        selector: 'td:first-child'
+    });
 
 	vm.dtColumns = [
+		DTColumnBuilder.newColumn(null).withTitle('')
+	            .notSortable()
+	            .withClass('select-checkbox')
+	            // Need to define the mRender function, otherwise we get a [Object Object]
+	            .renderWith(function() {
+	            	return '';
+	        	}),
+    	DTColumnBuilder.newColumn('customer_cart_id').withTitle('ID')
+			.notSortable()
+			.notVisible(),
 		DTColumnBuilder.newColumn('product_id').withTitle('Product ID'),
 		DTColumnBuilder.newColumn('name').withTitle('Product Name'),
-		DTColumnBuilder.newColumn('description').withTitle('Product Description'),
+		DTColumnBuilder.newColumn('is_prescription').withTitle('Prescription Medicine')
+			.renderWith(function(data, type, full) {
+				return full.is_prescription ? 'Yes' : 'No';
+			}),
+		DTColumnBuilder.newColumn('description').withTitle('Product Description')
+			.renderWith(function(data, type, full) {
+				return full.description != null ? full.description : '---';
+			}),
 		DTColumnBuilder.newColumn('price').withTitle('Product Price'),
 		DTColumnBuilder.newColumn('quantity').withTitle('Quantity Ordered'),
 		DTColumnBuilder.newColumn('subtotal').withTitle('Subtotal')
 	];
 
 	vm.dtOptions.drawCallback = function() {
-        	var table = this.DataTable();
+    	var table = this.DataTable();
 
-        	tableService.setTableInstance(table);
+    	tableService.setTableInstance(table);
+    };
 
-        	table.on('select', function() {
-        		var selectedRowCount = table.rows( { selected: true } ).count();
-
-        		if(selectedRowCount > 1) {
-        			table.button(1).enable(false);
-        		} else {
-        			for(var i = 1; i <= 2; i++) {
-        				table.button(i).enable(true);
-        			}
-        		}
-        	});
-
-        	table.on('deselect', function() {
-				var selectedRowCount = table.rows( { selected: true } ).count();
-
-				if(selectedRowCount == 0) {
-        			for(var i = 1; i <= 2; i++) {
-        				table.button(i).enable(false);
-        			}
-        		} 
-        	});	
-        };
-
-	$('#employee_modal').on('hidden.bs.modal', function() {
+	$('#cart').on('hidden.bs.modal', function() {
 		vm.dtInstance.changeData(vm.newPromise);
 	});
 
-	vm.newPromise = getEmployees;
+	vm.newPromise = getUserCart;
 	vm.dtInstance = {};
 
-	function getEmployees() {
+	function getUserCart() {
 		var defer = $q.defer();
 
 		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/carts')
 			.then(function(response) {
 				defer.resolve(response.data.active_carts);
-				
-				console.log(response.data.active_carts.length);
 
 				if(response.data.active_carts.length <= 0) {
 					vm.noCheckOut = true;
 				} else {
+					var deliveryTypes = {};
+
 					vm.noCheckOut = false;
+
+					if(response.data.has_prescription) {
+						deliveryTypes = [
+							{
+								delivery_type_id: 'pick-up',
+								name: 'Pick-up'
+							}
+						];
+					} else {
+						deliveryTypes = [
+							{
+								delivery_type_id: 'pick-up',
+								name: 'Pick-up'
+							},
+							{
+								delivery_type_id: 'delivery',
+								name: 'Delivery'
+							}
+						];
+					}
+					
+					vm.deliveryTypes = deliveryTypes;
 				}
 				
-				vm.totalAmountDueUntouched = response.data.active_cart_total[0].total;
+				vm.totalAmountDueUntouched = response.data.active_cart_total[0] != null ? response.data.active_cart_total[0].total : 0;
 
 				if(vm.totalAmountDueUntouched > 1 && vm.totalAmountDueUntouched < 500 && vm.deliveryType == 'delivery') {
 					vm.deliveryCharge = 20.00;
@@ -88,9 +108,8 @@ app.controller('CartController', function($http, $q, DTOptionsBuilder, DTColumnB
 	};
 
 	vm.deliveryTypeOnChange = function() {
-		if(vm.deliveryType == 'delivery') {
+		if(vm.deliveryType.delivery_type_id == 'delivery') {
 			vm.isPickUp = false;
-			console.log(vm.totalAmountDueUntouched);
 			if(vm.totalAmountDueUntouched > 1 && vm.totalAmountDueUntouched < 500) {
 					vm.deliveryCharge = 20.00;
 					vm.totalAmountDue = Number(vm.totalAmountDueUntouched) + 20;			
@@ -102,6 +121,63 @@ app.controller('CartController', function($http, $q, DTOptionsBuilder, DTColumnB
 			vm.isPickUp = true;
 			vm.totalAmountDue = vm.totalAmountDueUntouched;
 		}
+	}
+
+	vm.showUserCartDataOnClick = function() {
+		var userCart = tableService.getTableInstance().row({selected: true}).data();
+
+		vm.formUserCart.quantity = userCart.quantity;
+		vm.formUserCart.totalAmount = userCart.quantity * userCart.price;
+
+		$('#cart').modal('show');
+	}
+
+	vm.quantityOnChange = function() {
+		var userCart = tableService.getTableInstance().row({selected: true}).data();
+
+		vm.formUserCart.totalAmount = vm.formUserCart.quantity * userCart.price;
+	}
+
+	vm.updateCartOnClick = function() {
+		var userCart = tableService.getTableInstance().row({selected: true}).data();		
+
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/carts/' + userCart.customer_cart_id,
+			method: 'PUT',
+			data: $.param({
+				'product_id': userCart.product_id,
+				'quantity': vm.formUserCart.quantity,
+			}),
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then(function(response) {
+			alert(response.data.message);
+
+			$('#cart').modal('hide');
+		}, function(response) {
+			alert(response.data.message);
+		});
+	}
+
+	vm.deleteUserCartOnClick = function() {
+		var userCartIds = [];
+		var userCarts = tableService.getTableInstance().rows({selected: true}).data();
+
+		for(var i = 0; i < userCarts.count(); i++) {
+			userCartIds.push(userCarts[i].customer_cart_detail_id);
+		}
+
+		$http({
+			url: appSettings.BASE_URL + 'pharmacy/api/v1/carts/' + userCarts[0].customer_cart_id + '?userCartIds=' + JSON.stringify(userCartIds),
+			method: 'DELETE',
+		}).then(function(response) {
+			alert(response.data.message);
+
+			vm.dtInstance.changeData(vm.newPromise);			
+		}, function(response) {
+			alert(response.data.message);
+		});
 	}
 
 	vm.checkOutOnClick = function() {
