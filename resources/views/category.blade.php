@@ -59,5 +59,4 @@
 </div>	
 
 <script type="text/javascript" src="{!! asset('dist/js/angular/category/category.js') !!}"></script>
-<script type="text/javascript" src="{!! asset('dist/js/angular/category/category-add-update.js') !!}"></script>
 @stop

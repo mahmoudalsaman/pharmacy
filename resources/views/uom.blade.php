@@ -65,6 +65,5 @@
 	<!-- MODAL END -->
 </div>	
 
-<script type="text/javascript" src="{!! asset('dist/js/angular/uom/uom.js') !!}"></script>
-<script type="text/javascript" src="{!! asset('dist/js/angular/uom/uom-add-update.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('dist/js/angular/uom/uom.js') !!}"></script>>
 @stop
