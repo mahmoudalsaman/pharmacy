@@ -66,8 +66,8 @@
 				</div>
 				
 				<center>					
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center">Edit Order</button>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center">Delete Order</button>
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center" data-toggle="modal" data-target="#cart">Edit Order</button>
+					<button id="" type="button" class="btn btn-danger column-md-4 span4 text-center">Delete Order</button>
 				</center>
 				<br>
 			</form>
@@ -112,7 +112,7 @@
 
 					<div class="col-sm-12 modal-footer">
 						<center>
-							<button type="submit" class="btn btn-primary column-md-4 span4 text-right">Submit</button>
+							<button type="button" class="btn btn-primary column-md-4 span4 text-right">Submit</button>
 							<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
 						</center>
 					</div>
