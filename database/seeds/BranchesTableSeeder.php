@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use Carbon\Carbon;
+
 class BranchesTableSeeder extends Seeder
 {
     /**
@@ -12,8 +14,10 @@ class BranchesTableSeeder extends Seeder
     public function run()
     {
         DB::table('branches')->insert(array(
-        	'name' 		=> 'Zapote Branch',
-        	'address'	=> 'Saan to?'
+        	'name'             => 'Zapote Branch',
+        	'address'          => 'Saan to?',
+            'created_at'       => Carbon::now(),
+            'updated_at'       => Carbon::now()
         ));
     }
 }
