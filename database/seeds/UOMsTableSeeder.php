@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
 use Carbon\Carbon;
-class UOMTableSeeder extends Seeder
+
+class UOMsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
