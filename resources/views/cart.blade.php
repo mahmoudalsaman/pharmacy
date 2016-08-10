@@ -66,8 +66,8 @@
 				</div>
 				
 				<center>					
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
-					data-toggle="modal" data-target="#ordered_modal">Edit Order</button>
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center">Edit Order</button>
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center">Delete Order</button>
 				</center>
 				<br>
 			</form>
