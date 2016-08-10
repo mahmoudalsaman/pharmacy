@@ -7,51 +7,47 @@
   		<center>
 			<h2>List of Transactions</h2>
 		</center><br>	
-			<form class="form-horizontal" role="form" >
-				<input type="hidden" name="_token" value="{!! csrf_token() !!}" id="transaction_token">
+			<form class="form-horizontal" role="form" >				
 				<div class="form-group">		
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover" id="transaction_table">
 							<thead>
 								<tr>
-									{{-- <th class="hidden"><center>Transaction ID</center></th>
-									<th></th> --}}
+									<th></th>
+									<th><center>Transaction ID</center></th>
 									<th><center>Customer Name</center></th>
 									<th><center>Order #</center></th>
 									<th><center>Order Date</center></th>
-									<th><center>Action</center></th>
-									<th><center>Order Status</center></th>
-									<th><center>Ordered Product/s</center></th>
+									<th><center>Order Status</center></th>									
 									<th><center>Type</center></th>
 									<th><center>Delivery Status</center></th>
 								</tr>
 							</thead>
 							<tbody>				
-								@foreach($order_transactions as $order_transaction)			
 									<tr>
-										{{-- <td hidden="">TRAN0001</td>
 										<td>
 											<div class="checkbox">
 											  <label><input type="checkbox" value=""></label>
 											</div>
-										</td> --}}
-										<td>{!! $order_transaction->first_name . ' ' . $order_transaction->middle_name . ' ' . $order_transaction->last_name !!}</td>
-										<td>{!! $order_transaction->customer_sales_invoice_id !!}</td>
-										<td>{!! $order_transaction->ordered_at !!}</td>
-										<td>
-											<button type="button" class="btn btn-primary" onclick="approveOnClick('{!! $order_transaction->customer_sales_invoice_id !!}')">
-												Approve
-											</button>
 										</td>
-										<td>{!! $order_transaction->status !!}</td>
-										<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ordered_list">View Details</button></td>
-										<td>{!! $order_transaction->remarks !!}</td>
-										<td>{!! $order_transaction->delivery_status != null ? $order_transaction->delivery_status : '---' !!}</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>									
+										<td></td>
+										<td></td>
+										<td></td>
 									</tr>
-								@endforeach
 							</tbody>
 						</table>
 					</div>	
+
+					<div>
+						<center>
+							<button type="button" class="btn btn-primary">Accept</button>
+							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ordered_list">View</button>
+						</center>
+					</div>
 					
 				</div>
 				<br>
@@ -104,7 +100,7 @@
 
 				<div class="col-sm-12 modal-footer">
 						<center>							
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 						</center>
 					</div>
 				</div>	
@@ -114,46 +110,5 @@
     </div>
 </div>
 
-<script type="text/javascript">
-	$('#transaction_table').DataTable();
-
-	function approveOnClick(id)
-	{
-		$.ajax({
-			url: '{!! url('pharmacy/api/v1/sales-approvals?isApproved=1&salesInvoiceId=') !!}' + id,
-			type: 'POST',
-			data: {
-				'_token': document.getElementById('transaction_token').value
-			},
-			success: function(data) {
-				alert('Success!');
-
-				window.location.href = '{!! url('transaction') !!}';
-			},
-			error: function(xhr) {
-				alert('An error occurred!');
-			}
-		});
-	}
-
-	function rejectOnClick(id)
-	{
-		$.ajax({
-			url: '{!! url('pharmacy/api/v1/sales-approvals?isApproved=0&salesInvoiceId=') !!}' + id,
-			type: 'POST',
-			data: {
-				'_token': document.getElementById('transaction_token').value
-			},
-			success: function(data) {
-				alert('Success!');
-
-				window.location.href = '{!! url('transaction') !!}';
-			},
-			error: function(xhr) {
-				alert('An error occurred!');
-			}
-		});
-	}
-</script>
 
 @stop
