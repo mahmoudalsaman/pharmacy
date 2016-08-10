@@ -36,7 +36,7 @@ class SalesApprovalApi extends Controller
                 'customer_sales_invoices.remarks',
                 'customer_sales_deliveries.status as delivery_status'
             )
-            ->groupBy('customer_sales_invoices.user_id_fk')
+            ->groupBy('customer_sales_invoices.customer_sales_invoice_id')
             ->get();
 
         return response()->json(array(
