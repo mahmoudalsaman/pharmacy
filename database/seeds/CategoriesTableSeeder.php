@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
 use Carbon\Carbon;
-class CategoryTableSeeder extends Seeder
+
+class CategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -178,6 +180,5 @@ class CategoryTableSeeder extends Seeder
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now()
         ));
-		         
     }
 }
