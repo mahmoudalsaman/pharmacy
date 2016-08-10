@@ -86,17 +86,6 @@ class ProductInventoriesTableSeeder extends Seeder
 		DB::table('product_inventories')->insert(array(
 			'branch_id_fk'=> 1,
 			'user_id_fk'=> 1,
-			'product_id_fk'	=> 7,
-			'previous_value'=> 0,
-			'current_value'=> 700,
-			'created_at'=> Carbon::now(),
-			'updated_at'=> Carbon::now()
-		));
-
-
-		DB::table('product_inventories')->insert(array(
-			'branch_id_fk'=> 1,
-			'user_id_fk'=> 1,
 			'product_id_fk'	=> 8,
 			'previous_value'=> 0,
 			'current_value'=> 800,
@@ -184,7 +173,6 @@ class ProductInventoriesTableSeeder extends Seeder
 			'created_at'=> Carbon::now(),
 			'updated_at'=> Carbon::now()
 		));
-
 
 
     }
