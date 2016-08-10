@@ -73,12 +73,6 @@
 
 
 						<div class="col-md-5 col-md-offset-1">
-						    <div class="form-group col-md-12"" >
-				                <label>Brand</label>
-				                <select class="form-control select2" style="width: 100%;" ng-model="vmProduct.formProduct.brand" ng-options="brand as brand.name for brand in vmProduct.brands track by brand.brand_id">
-				                </select>
-				            </div>
-
 				            <div class="form-group col-md-12"">
 				                <label>Category</label>
 				                <select class="form-control select2" style="width: 100%;" ng-model="vmProduct.formProduct.category" ng-options="category as category.name for category in vmProduct.categories track by category.category_id">

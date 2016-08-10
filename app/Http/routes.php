@@ -51,9 +51,6 @@ Route::get('branch', function () {
     return view('branch');
 });
 
-Route::get('brand', function () {
-    return view('brand');
-});
 
 Route::get('category', function () {
     return view('category');
@@ -127,7 +124,6 @@ Route::group(['prefix' => 'pharmacy/api'], function() {
 		Route::resource('branches', 'Api\\BranchApi');
 		Route::resource('users', 'Api\\UserApi');
 		Route::resource('categories', 'Api\\CategoryApi');
-		Route::resource('brands', 'Api\\BrandApi');
 		Route::resource('products', 'Api\\ProductApi');
 		Route::resource('uoms', 'Api\\UnitOfMeasurementApi');
 		Route::resource('carts', 'Api\\CartApi');

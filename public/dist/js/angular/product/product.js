@@ -23,7 +23,6 @@ app.controller('ProductController', function($http, $q, DTOptionsBuilder, DTColu
         	}),
 		DTColumnBuilder.newColumn('product_id').withTitle('ID'),
 		DTColumnBuilder.newColumn('product_id').withTitle('Image'),
-		DTColumnBuilder.newColumn('brand_name').withTitle('Brand'),
 		DTColumnBuilder.newColumn('category_name').withTitle('Category'),
 		DTColumnBuilder.newColumn('product_name').withTitle('Name'),
 		DTColumnBuilder.newColumn('amount').withTitle('Dosage Amount'),
@@ -90,7 +89,6 @@ app.controller('ProductController', function($http, $q, DTOptionsBuilder, DTColu
 				method: 'POST',
 				data: $.param({
 					'name': vm.formProduct.productName,
-					'brand_id_fk': vm.formProduct.brand.brand_id,
 					'description': vm.formProduct.productDescription,
 					'price': vm.formProduct.productPrice,
 					'category_id_fk': vm.formProduct.category.category_id,
@@ -116,7 +114,6 @@ app.controller('ProductController', function($http, $q, DTOptionsBuilder, DTColu
 				method: 'PUT',
 				data: $.param({
 					'name': vm.formProduct.productName,
-					'brand_id_fk': vm.formProduct.brand.brand_id,
 					'description': vm.formProduct.productDescription,
 					'price': vm.formProduct.productPrice,
 					'category_id_fk': vm.formProduct.category.category_id,
@@ -138,13 +135,6 @@ app.controller('ProductController', function($http, $q, DTOptionsBuilder, DTColu
 	};
 
 	$window.onload = function() {
-		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/brands')
-			.then(function(response) {
-				vm.brands = response.data.active_brands;
-			}, function(response) {
-				alert(response.data.message);
-			});
-
 		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/categories')
 			.then(function(response) {
 				vm.categories = response.data.active_categories;
