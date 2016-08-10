@@ -22,7 +22,7 @@
 
 	<div class="form-group col-md-3">
 		<label>Category</label>
-		<select class="form-control" style="width: 100%;" ng-model="vmProductOrder.category" ng-options="category as category.name for category in vmProductOrder.categories track by category.category_id">  
+		<select class="form-control" style="width: 100%;" ng-model="vmProductOrder.category" ng-options="category as category.name for category in vmProductOrder.categories track by category.category_id" ng-change="vmProductOrder.categoryonChange()">  
 		</select>
 	</div>
 </div>

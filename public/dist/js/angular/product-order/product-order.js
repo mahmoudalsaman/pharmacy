@@ -66,4 +66,13 @@ app.controller('ProductOrderController', function($http, appSettings) {
 			});
 		}
 	}
+
+	vm.categoryonChange = function() {
+		$http.get(appSettings.BASE_URL + 'pharmacy/api/v1/products?categoryId=' + vm.category.category_id)
+			.then(function(response) {
+				vm.products = response.data.active_products;
+			}, function(error) {
+				alert(error.data.message);
+			})
+	}
 });

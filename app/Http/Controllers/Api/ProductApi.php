@@ -27,7 +27,7 @@ class ProductApi extends Controller
     public function index()
     {
         return response()->json(array(
-            'active_products'   => $this->queryProduct(null)
+            'active_products'   => $this->queryProduct(null, Input::get('categoryId'))
         ));
     }
 
@@ -192,7 +192,7 @@ class ProductApi extends Controller
         ));
     }
 
-    public function queryProduct($id)
+    public function queryProduct($id, $categoryId)
     {
         $productQuery = Product::join('product_inventories', 'product_inventories.product_id_fk', '=', 'products.product_id')
         ->join('categories', 'products.category_id_fk', '=', 'categories.category_id')
@@ -217,9 +217,11 @@ class ProductApi extends Controller
         if($id) {
             $productQueryResult = $productQuery->where('products.product_id', '=', $id)
                 ->first();
-        } else {
-            $productQueryResult = $productQuery
+        } else if($categoryId) {
+            $productQueryResult = $productQuery->where('products.category_id_fk', '=', $categoryId)
                 ->get();
+        } else {
+            $productQueryResult = $productQuery->get();
         }
 
         return $productQueryResult;
