@@ -54,5 +54,12 @@ class UOMsTableSeeder extends Seeder
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now()
         ));
+
+        DB::table('unit_of_measurements')->insert(array(
+            'name'  => 'Capsule',
+            'abbreviation'  => 'Capsule',    
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now()
+        ));
     }
 }
