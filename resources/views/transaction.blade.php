@@ -42,12 +42,9 @@
 											<button type="button" class="btn btn-primary" onclick="approveOnClick('{!! $order_transaction->customer_sales_invoice_id !!}')">
 												Approve
 											</button>
-											<button type="button" class="btn btn-danger" onclick="rejectOnClick('{!! $order_transaction->customer_sales_invoice_id !!}')">
-												Reject
-											</button>
 										</td>
 										<td>{!! $order_transaction->status !!}</td>
-										<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ordered_list">View Details</button></td>
+										<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ordered_list">View Details</button></td>
 										<td>{!! $order_transaction->remarks !!}</td>
 										<td>{!! $order_transaction->delivery_status != null ? $order_transaction->delivery_status : '---' !!}</td>
 									</tr>
@@ -61,10 +58,6 @@
 			</form>
 	</div>
 </div>
-
-
-
-
 
 
 
@@ -89,7 +82,7 @@
 									<th>Description</th>
 									<th>Price</th>
 									<th>Quantity Ordered</th>
-									<th>Total Amount</th>		
+									<th>Sub Total</th>		
 								</tr>
 							</thead>
 							<tbody>							
@@ -104,12 +97,10 @@
 						</table>
 					</div>	
 				</div>	
-
 				<div class="form-group col-md-4">
 					<label>Total Amount</label>
 					<input type="text" class="form-control" id="trans_total_amount" placeholder="" disabled="">
 				</div>
-
 
 				<div class="col-sm-12 modal-footer">
 						<center>							

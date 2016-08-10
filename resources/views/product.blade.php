@@ -18,7 +18,8 @@
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-left" data-toggle="modal" data-target="#product_modal">Add Product</button>
 					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-center"
 					ng-click="vmProduct.showProductDataOnClick()">Edit Product</button>
-					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right">Delete Product</button>					
+					<button id="" type="button" class="btn btn-primary column-md-4 span4 text-right"
+					ng-click="vmProduct.deleteProductOnClick()">Delete Product</button>					
 				</center>
 				<br>
 			</form>
