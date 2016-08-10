@@ -27,7 +27,7 @@ class SalesInvoiceApi extends Controller
      */
     public function index()
     {
-        //
+        // 
     }
 
     /**
@@ -124,7 +124,10 @@ class SalesInvoiceApi extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(array(
+            'sales_invoice_details' => $this->querySalesInvoice($id, false),
+            'sales_invoice_total'   => $this->querySalesInvoice($id, true)
+        ));
     }
 
     /**
@@ -159,5 +162,27 @@ class SalesInvoiceApi extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function querySalesInvoice($id, $showTotal)
+    {
+        $salesQuery = CustomerSalesInvoice::join('customer_sales_invoice_details', 'customer_sales_invoice_details.customer_sales_invoice_id_fk', '=', 'customer_sales_invoices.customer_sales_invoice_id')
+            ->join('products', 'customer_sales_invoice_details.product_id_fk', '=', 'products.product_id')
+            ->select(
+                'customer_sales_invoices.customer_sales_invoice_id',
+                'products.product_id',
+                'products.name',
+                'products.description',
+                'products.price',
+                'products.is_prescription',
+                'customer_sales_invoice_details.customer_sales_invoice_detail_id',
+                'customer_sales_invoice_details.quantity',
+                DB::raw('SUM(customer_sales_invoice_details.quantity * products.price) as subtotal')
+            )
+            ->where('customer_sales_invoices.customer_sales_invoice_id', '=', $id)
+            ->groupBy($showTotal ? 'customer_sales_invoices.user_id_fk' : 'products.product_id')
+            ->get();
+
+        return $salesQuery;
     }
 }

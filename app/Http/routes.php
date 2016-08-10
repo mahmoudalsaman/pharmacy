@@ -64,21 +64,7 @@ Route::group(['prefix' => 'maintenance'], function() {
 Route::post('register', 'RegistrationController@doRegister');
 
 Route::get('transaction', function () {
-    return view('transaction')
-    	->with('order_transactions', App\CustomerSalesInvoice::join('users', 'customer_sales_invoices.user_id_fk', '=', 'users.user_id')
-    		->leftJoin('customer_sales_deliveries', 'customer_sales_deliveries.customer_sales_invoice_id_fk', '=', 'customer_sales_invoices.customer_sales_invoice_id')
-    		->join('customer_sales_invoice_details', 'customer_sales_invoice_details.customer_sales_invoice_id_fk', '=', 'customer_sales_invoices.customer_sales_invoice_id')
-    		->select(
-    			'customer_sales_invoices.customer_sales_invoice_id',
-    			'users.first_name',
-    			'users.middle_name',
-    			'users.last_name',
-    			'customer_sales_invoices.ordered_at',
-    			'customer_sales_invoices.status',
-    			'customer_sales_invoices.remarks',
-    			'customer_sales_deliveries.status as delivery_status'
-    		)
-    		->get());
+    return view('transaction');
 });
 
 Route::get('login', function () {
