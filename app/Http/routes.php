@@ -28,40 +28,37 @@ Route::get('test', function() {
 	return 'Yey!';
 });
 
-Route::get('pdf', function() {
-	return PDF::loadView('pdf.test', [])
-		->stream();
-});
-
 Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('employee', function () {
-    return view('employee');
-});
+Route::group(['prefix' => 'maintenance'], function() {
+	Route::get('employee', function () {
+	    return view('employee');
+	});
 
 
-Route::get('customer', function () {
-    return view('customer');
-});
+	Route::get('customer', function () {
+	    return view('customer');
+	});
 
 
-Route::get('branch', function () {
-    return view('branch');
-});
+	Route::get('branch', function () {
+	    return view('branch');
+	});
 
 
-Route::get('category', function () {
-    return view('category');
-});
+	Route::get('category', function () {
+	    return view('category');
+	});
 
-Route::get('product', function () {
-    return view('product');
-});
+	Route::get('uom', function () {
+	    return view('uom');
+	});
 
-Route::get('inventory', function () {
-    return view('inventory');
+	Route::get('product', function () {
+	    return view('product');
+	});
 });
 
 Route::post('register', 'RegistrationController@doRegister');
@@ -94,10 +91,6 @@ Route::get('order', function () {
 
 Route::get('cart', function () {
     return view('cart');
-});
-
-Route::get('uom', function () {
-    return view('uom');
 });
 
 Route::get('register', function () {
